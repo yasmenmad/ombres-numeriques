@@ -1,0 +1,16 @@
+{
+  "name": "ombres-numeriques",
+  "version": "1.0.0",
+  "description": "Morocco Infrastructure Intelligence Platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "leaflet": "^1.9.4"
+  }
+}
