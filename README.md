@@ -1,11 +1,11 @@
-# 🟡 Ombres Numériques
+#  Ombres Numériques
 ## Morocco Infrastructure Intelligence Platform
 
 Plateforme de cartographie des besoins infrastructurels dans les régions rurales du Maroc.
 
 ---
 
-## 🚀 Démarrage rapide
+##  Démarrage rapide
 
 ### Prérequis
 - Node.js (v16+) — https://nodejs.org
@@ -24,11 +24,11 @@ npm start
 # → http://localhost:3000
 ```
 
-C'est tout ! 🎉
+C'est tout ! 
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 ombres-numeriques/
@@ -46,7 +46,7 @@ ombres-numeriques/
 
 ---
 
-## 🗺 Fonctionnalités
+##  Fonctionnalités
 
 ### Page d'accueil (index.html)
 - Vue d'ensemble du projet
@@ -73,7 +73,7 @@ ombres-numeriques/
 
 ---
 
-## 🔌 API REST
+##  API REST
 
 Le serveur expose une API simple :
 
@@ -105,7 +105,7 @@ curl -X POST http://localhost:3000/api/regions/DRK/report
 
 ---
 
-## 📊 Sources des données
+##  Sources des données
 
 | Source | Contenu |
 |--------|---------|
@@ -116,7 +116,7 @@ curl -X POST http://localhost:3000/api/regions/DRK/report
 
 ---
 
-## 🗂 IDs des régions
+##  IDs des régions
 
 | ID | Région |
 |----|--------|
@@ -135,7 +135,7 @@ curl -X POST http://localhost:3000/api/regions/DRK/report
 
 ---
 
-## 🛠 Technologies utilisées
+##  Technologies utilisées
 
 - **Backend**: Node.js + Express
 - **Frontend**: HTML/CSS/JS vanilla
