@@ -1,4 +1,4 @@
-# 🗺️ Ombres Numériques — Morocco Infrastructure Intelligence Platform
+# ️ Ombres Numériques — Morocco Infrastructure Intelligence Platform
 
 [![Node.js](https://img.shields.io/badge/Backend-Node.js%20%2F%20Express-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Leaflet](https://img.shields.io/badge/GIS-Leaflet.js-199900?logo=leaflet&logoColor=white)](https://leafletjs.com/)
@@ -9,7 +9,7 @@ Plateforme de cartographie géospatiale et d'analyse multidimensionnelle des bes
 
 ---
 
-## 🏛️ Architecture du Projet
+## ️ Architecture du Projet
 
 ```
 ombres-numeriques/
@@ -27,7 +27,7 @@ ombres-numeriques/
 
 ---
 
-## ⚡ Démarrage Rapide
+## Démarrage Rapide
 
 ### Prérequis
 - **Node.js** (v16+)
@@ -51,7 +51,7 @@ npm start
 
 ---
 
-## 🎯 Fonctionnalités Principales
+## Fonctionnalités Principales
 
 ### 1. Synthèse Nationale (`index.html`)
 - Vue d'ensemble des indicateurs de développement humain (IDH).
@@ -71,7 +71,7 @@ npm start
 
 ---
 
-## 📡 Spécification de l'API REST
+## Spécification de l'API REST
 
 | Méthode | Route | Description |
 | :--- | :--- | :--- |
@@ -84,7 +84,7 @@ npm start
 
 ---
 
-## 📊 Sources des Données
+## Sources des Données
 
 | Organisation | Données Intégrées |
 | :--- | :--- |
@@ -95,7 +95,7 @@ npm start
 
 ---
 
-## 👩‍💻 Auteure
+## ‍ Auteure
 
 **Yasmine Daoudi**  
 *Étudiante en Génie Informatique & Science des Données*  
