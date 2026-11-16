@@ -1,0 +1,85 @@
+// Hero canvas animation
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight}
+resize();window.addEventListener('resize',resize);
+
+for(let i=0;i<60;i++){
+  particles.push({
+    x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+    vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+    size:Math.random()*2+.5,opacity:Math.random()*.4+.1
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(212,168,67,${p.opacity})`;ctx.fill();
+  });
+  // Lines between close particles
+  particles.forEach((p,i)=>{
+    particles.slice(i+1).forEach(q=>{
+      const d=Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<120){
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+        ctx.strokeStyle=`rgba(212,168,67,${.06*(1-d/120)})`;
+        ctx.lineWidth=.5;ctx.stroke();
+      }
+    });
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// HDI Chart
+const MOROCCO_DATA = {"regions": [{"id": "TAN", "name": "Tanger-Tétouan-Al Hoceïma", "lat": 35.77, "lng": -5.8, "pop": 3556000, "rural_pct": 0.36, "needs": {"hospital": 42, "school": 38, "bank": 35, "electricity": 22, "water": 30, "internet": 45}, "priority_score": 35.3}, {"id": "ORI", "name": "Oriental", "lat": 34.68, "lng": -2.93, "pop": 2314000, "rural_pct": 0.42, "needs": {"hospital": 61, "school": 58, "bank": 52, "electricity": 38, "water": 48, "internet": 62}, "priority_score": 53.2}, {"id": "FMK", "name": "Fès-Meknès", "lat": 34.02, "lng": -5.0, "pop": 4236000, "rural_pct": 0.45, "needs": {"hospital": 55, "school": 52, "bank": 48, "electricity": 31, "water": 42, "internet": 57}, "priority_score": 47.5}, {"id": "RBS", "name": "Rabat-Salé-Kénitra", "lat": 34.02, "lng": -6.83, "pop": 4580000, "rural_pct": 0.29, "needs": {"hospital": 28, "school": 25, "bank": 18, "electricity": 12, "water": 18, "internet": 30}, "priority_score": 21.8}, {"id": "BKD", "name": "Béni Mellal-Khénifra", "lat": 32.33, "lng": -6.35, "pop": 2520000, "rural_pct": 0.57, "needs": {"hospital": 72, "school": 68, "bank": 65, "electricity": 55, "water": 62, "internet": 74}, "priority_score": 66.0}, {"id": "CAS", "name": "Casablanca-Settat", "lat": 33.5, "lng": -7.6, "pop": 6861000, "rural_pct": 0.19, "needs": {"hospital": 20, "school": 18, "bank": 12, "electricity": 8, "water": 12, "internet": 22}, "priority_score": 15.3}, {"id": "MRK", "name": "Marrakech-Safi", "lat": 31.63, "lng": -8.0, "pop": 4520000, "rural_pct": 0.5, "needs": {"hospital": 65, "school": 62, "bank": 58, "electricity": 48, "water": 58, "internet": 68}, "priority_score": 59.8}, {"id": "DRK", "name": "Drâa-Tafilalet", "lat": 31.93, "lng": -4.43, "pop": 1635000, "rural_pct": 0.63, "needs": {"hospital": 82, "school": 78, "bank": 75, "electricity": 68, "water": 72, "internet": 85}, "priority_score": 76.7}, {"id": "SMA", "name": "Souss-Massa", "lat": 30.42, "lng": -8.45, "pop": 2676000, "rural_pct": 0.48, "needs": {"hospital": 60, "school": 57, "bank": 53, "electricity": 42, "water": 52, "internet": 63}, "priority_score": 54.5}, {"id": "GZD", "name": "Guelmim-Oued Noun", "lat": 28.98, "lng": -10.05, "pop": 433000, "rural_pct": 0.55, "needs": {"hospital": 76, "school": 74, "bank": 72, "electricity": 62, "water": 68, "internet": 78}, "priority_score": 71.7}, {"id": "LAY", "name": "Laâyoune-Sakia El Hamra", "lat": 27.15, "lng": -13.2, "pop": 367000, "rural_pct": 0.38, "needs": {"hospital": 68, "school": 65, "bank": 62, "electricity": 52, "water": 60, "internet": 70}, "priority_score": 62.8}, {"id": "DDK", "name": "Dakhla-Oued Ed-Dahab", "lat": 23.71, "lng": -15.94, "pop": 143000, "rural_pct": 0.32, "needs": {"hospital": 71, "school": 69, "bank": 67, "electricity": 58, "water": 65, "internet": 73}, "priority_score": 67.2}], "national": {"hdi_2023": 0.698, "hdi_1990": 0.451, "life_exp_2023": 75.1, "rural_pop_2023": 13365370, "urban_pop_2023": 24954350, "rural_pct": 37.3, "hospital_beds_per1000": 0.73, "nurses_per1000": 0.869, "bank_branches_per100k": 20.9, "poverty_pct": 3.9, "school_enrollment_tertiary": 43.3}, "hdi_trend": [{"year": 1990, "hdi": 0.451}, {"year": 1991, "hdi": 0.457}, {"year": 1992, "hdi": 0.461}, {"year": 1993, "hdi": 0.468}, {"year": 1994, "hdi": 0.48}, {"year": 1995, "hdi": 0.484}, {"year": 1996, "hdi": 0.495}, {"year": 1997, "hdi": 0.5}, {"year": 1998, "hdi": 0.507}, {"year": 1999, "hdi": 0.517}, {"year": 2000, "hdi": 0.528}, {"year": 2001, "hdi": 0.539}, {"year": 2002, "hdi": 0.55}, {"year": 2003, "hdi": 0.56}, {"year": 2004, "hdi": 0.567}, {"year": 2005, "hdi": 0.573}, {"year": 2006, "hdi": 0.579}, {"year": 2007, "hdi": 0.586}, {"year": 2008, "hdi": 0.593}, {"year": 2009, "hdi": 0.598}, {"year": 2010, "hdi": 0.607}, {"year": 2011, "hdi": 0.619}, {"year": 2012, "hdi": 0.629}, {"year": 2013, "hdi": 0.639}, {"year": 2014, "hdi": 0.648}, {"year": 2015, "hdi": 0.656}, {"year": 2016, "hdi": 0.663}, {"year": 2017, "hdi": 0.671}, {"year": 2018, "hdi": 0.678}, {"year": 2019, "hdi": 0.683}, {"year": 2020, "hdi": 0.686}, {"year": 2021, "hdi": 0.69}, {"year": 2022, "hdi": 0.694}, {"year": 2023, "hdi": 0.698}]};
+window.addEventListener('load', function(){
+  const data = MOROCCO_DATA;
+
+  const wrap = document.getElementById('hdi-chart');
+  const trend = data.hdi_trend;
+  // show every 5 years
+  const filtered = trend.filter(d=>d.year%5===0||d.year===2023);
+  const max = Math.max(...filtered.map(d=>d.hdi));
+  const min = Math.min(...filtered.map(d=>d.hdi));
+  
+  const bars = document.createElement('div');
+  bars.className='bars';
+  filtered.forEach(d=>{
+    const col = document.createElement('div');
+    col.className='bar-col';
+    const pct = (d.hdi-min+.02)/(max-min+.02)*100;
+    col.innerHTML=`<div class="bar-fill" style="height:${pct}%;opacity:.5" title="${d.year}: ${d.hdi}"></div>
+      <div class="bar-year">${d.year}</div>`;
+    bars.appendChild(col);
+  });
+  wrap.appendChild(bars);
+
+  // Regions list
+  const list = document.getElementById('regions-list');
+  const sorted = [...data.regions].sort((a,b)=>b.priority_score-a.priority_score).slice(0,6);
+  sorted.forEach((r,i)=>{
+    const score = r.priority_score;
+    const color = score>70?'#c04a30':score>50?'#c07820':'#3a9e6a';
+    const urgency = score>70?'URGENT':score>50?'MOYEN':'OK';
+    const row = document.createElement('a');
+    row.href='map.html';
+    row.className='region-row';
+    row.innerHTML=`
+      <div class="rr-rank">${String(i+1).padStart(2,'0')}</div>
+      <div class="rr-name">${r.name}</div>
+      <div class="rr-score-wrap">
+        <div class="rr-bar"><div class="rr-fill" style="width:${score}%;background:${color}"></div></div>
+        <div class="rr-val" style="color:${color}">${score}</div>
+        <div class="rr-tag" style="color:${color};background:${color}22">${urgency}</div>
+      </div>`;
+    list.appendChild(row);
+  });
+});
