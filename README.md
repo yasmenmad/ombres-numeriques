@@ -1,148 +1,104 @@
-#  Ombres Numériques
-## Morocco Infrastructure Intelligence Platform
+# 🗺️ Ombres Numériques — Morocco Infrastructure Intelligence Platform
 
-Plateforme de cartographie des besoins infrastructurels dans les régions rurales du Maroc.
+[![Node.js](https://img.shields.io/badge/Backend-Node.js%20%2F%20Express-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Leaflet](https://img.shields.io/badge/GIS-Leaflet.js-199900?logo=leaflet&logoColor=white)](https://leafletjs.com/)
+[![Chart.js](https://img.shields.io/badge/Analytics-Chart.js-FF6384?logo=chart.js&logoColor=white)](https://www.chartjs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
-
-##  Démarrage rapide
-
-### Prérequis
-- Node.js (v16+) — https://nodejs.org
-- Un navigateur moderne
-
-### Installation
-
-```bash
-# 1. Installe les dépendances
-npm install
-
-# 2. Lance le serveur
-npm start
-
-# 3. Ouvre dans ton navigateur
-# → http://localhost:3000
-```
-
-C'est tout ! 
+Plateforme de cartographie géospatiale et d'analyse multidimensionnelle des besoins infrastructurels dans les 12 régions du Royaume du Maroc. Le système agrège des indicateurs socio-économiques fiables (Banque Mondiale, FAO, PNUD / UNDP) pour quantifier les disparités d'accès aux services essentiels (santé, éducation, électrification, eau potable, connectivité numérique).
 
 ---
 
-##  Structure du projet
+## 🏛️ Architecture du Projet
 
 ```
 ombres-numeriques/
 ├── backend/
-│   └── server.js          ← Serveur Express Node.js
+│   └── server.js          ← API REST Express & Agrégation analytique
 ├── frontend/
-│   ├── index.html         ← Page d'accueil
-│   ├── map.html           ← Carte interactive Leaflet
-│   ├── dashboard.html     ← Dashboard analytique Chart.js
+│   ├── index.html         ← Synthèse nationale & indicateurs clés
+│   ├── map.html           ← Cartographie interactive Leaflet.js
+│   ├── dashboard.html     ← Tableaux de bord comparatifs Chart.js
 │   └── public/data/
-│       └── morocco_data.json  ← Données des 12 régions
+│       └── morocco_data.json  ← Référentiel des 12 régions
 ├── package.json
 └── README.md
 ```
 
 ---
 
-##  Fonctionnalités
+## ⚡ Démarrage Rapide
 
-### Page d'accueil (index.html)
-- Vue d'ensemble du projet
-- Statistiques nationales (IDH, population rurale, hôpitaux...)
-- Classement des régions les plus sous-équipées
-- Animation canvas de fond
+### Prérequis
+- **Node.js** (v16+)
+- Navigateur web moderne
 
-### Carte interactive (map.html)
-- Carte OpenStreetMap avec Leaflet.js
-- Marqueurs géolocalisés pour les 12 régions
-- Taille + couleur selon score de besoin
-- Filtrage par type de service (hôpital, école, banque, eau, électricité, internet)
-- Panneau de détail au clic sur une région
-- Classement latéral en temps réel
-
-### Dashboard analytique (dashboard.html)
-- KPIs nationaux (IDH, espérance de vie, population rurale...)
-- Graphique HDI 1990–2023 (source UNDP)
-- Graphique population rurale/urbaine (source FAO)
-- Carte de chaleur régions × services
-- Radar chart comparatif (top 4 régions à risque)
-- Classement horizontal par score
-- Fiches détaillées par région
-
----
-
-##  API REST
-
-Le serveur expose une API simple :
-
-| Endpoint | Description |
-|----------|-------------|
-| `GET /api/regions` | Toutes les régions avec scores |
-| `GET /api/regions/:id` | Détail d'une région (ex: `/api/regions/DRK`) |
-| `GET /api/national` | Indicateurs nationaux |
-| `GET /api/hdi-trend` | Évolution IDH 1990-2023 |
-| `GET /api/services` | Agrégat par type de service |
-| `GET /api/summary` | Résumé statistique |
-| `POST /api/regions/:id/report` | Rapport texte pour une région |
-
-### Exemples
-
+### Installation & Exécution
 ```bash
-# Toutes les régions triées par urgence
-curl http://localhost:3000/api/regions
+# 1. Cloner le dépôt
+git clone https://github.com/yasmenmad/ombres-numeriques.git
+cd ombres-numeriques
 
-# Filtrer par service hospitalier
-curl http://localhost:3000/api/regions?service=hospital
+# 2. Installer les dépendances
+npm install
 
-# Détail de la région Drâa-Tafilalet
-curl http://localhost:3000/api/regions/DRK
+# 3. Démarrer le serveur Express
+npm start
 
-# Rapport automatique
-curl -X POST http://localhost:3000/api/regions/DRK/report
+# 4. Accéder à la plateforme
+# → http://localhost:3000
 ```
 
 ---
 
-##  Sources des données
+## 🎯 Fonctionnalités Principales
 
-| Source | Contenu |
-|--------|---------|
-| **FAO STAT** | Population rurale/urbaine, utilisation des terres, production agricole |
-| **Banque Mondiale** | IDH, espérance de vie, lits d'hôpitaux, agences bancaires |
-| **UNDP HDR** | Indice de développement humain 1990–2023 |
-| **UN SDG** | Indicateurs des Objectifs de Développement Durable |
+### 1. Synthèse Nationale (`index.html`)
+- Vue d'ensemble des indicateurs de développement humain (IDH).
+- Taux de population rurale vs. urbaine et ratios d'infrastructures sanitaires.
+- Classement algorithmique des provinces prioritaires pour l'aménagement territorial.
 
----
+### 2. Cartographie Interactive (`map.html`)
+- Moteur cartographique basé sur **Leaflet.js** et couches OpenStreetMap.
+- Marqueurs proportionnels avec gradient chromatique selon le niveau de criticité.
+- Filtrage multicritère par typologie de service : *Santé, Éducation, Agences bancaires, Eau, Énergie, Réseau Internet*.
+- Panneaux rétractables détaillant le profil territorial de chaque région.
 
-##  IDs des régions
-
-| ID | Région |
-|----|--------|
-| TAN | Tanger-Tétouan-Al Hoceïma |
-| ORI | Oriental |
-| FMK | Fès-Meknès |
-| RBS | Rabat-Salé-Kénitra |
-| BKD | Béni Mellal-Khénifra |
-| CAS | Casablanca-Settat |
-| MRK | Marrakech-Safi |
-| DRK | Drâa-Tafilalet |
-| SMA | Souss-Massa |
-| GZD | Guelmim-Oued Noun |
-| LAY | Laâyoune-Sakia El Hamra |
-| DDK | Dakhla-Oued Ed-Dahab |
+### 3. Dashboard Analytique (`dashboard.html`)
+- Évolution historique de l'IDH (1990–2023) d'après les rapports mondiaux du PNUD.
+- Heatmap de criticité croisant régions administratives et catégories de services.
+- Graphiques radars comparatifs identifiant les poches de vulnérabilité territoriale.
 
 ---
 
-##  Technologies utilisées
+## 📡 Spécification de l'API REST
 
-- **Backend**: Node.js + Express
-- **Frontend**: HTML/CSS/JS vanilla
-- **Carte**: Leaflet.js (OpenStreetMap)
-- **Graphiques**: Chart.js
-- **Fonts**: Fraunces, Syne, JetBrains Mono (Google Fonts)
+| Méthode | Route | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/regions` | Liste exhaustive des 12 régions et scores de criticité |
+| `GET` | `/api/regions/:id` | Fiche détaillée par code région (ex: `DRK`, `ORI`) |
+| `GET` | `/api/national` | Indicateurs consolidés à l'échelle du Royaume |
+| `GET` | `/api/hdi-trend` | Séries temporelles d'évolution de l'IDH |
+| `GET` | `/api/services` | Métriques ventilées par type d'infrastructure |
+| `POST` | `/api/regions/:id/report` | Génération de rapport d'audit territorial |
 
 ---
 
-*Ombres Numériques — Morocco Infrastructure Intelligence*
+## 📊 Sources des Données
+
+| Organisation | Données Intégrées |
+| :--- | :--- |
+| **FAO STAT** | Répartition démographique rurale/urbaine, surfaces agricoles |
+| **Banque Mondiale** | Ratios hospitaliers, accès bancaire, espérance de vie |
+| **PNUD / UNDP** | Séries historiques de l'Indice de Développement Humain (IDH) |
+| **HCP Maroc** | Recensement général et ventilation régionale officielle |
+
+---
+
+## 👩‍💻 Auteure
+
+**Yasmine Daoudi**  
+*Étudiante en Génie Informatique & Science des Données*  
+Université Ibn Tofail — Kénitra, Maroc  
+- LinkedIn : [linkedin.com/in/yasmine-daoudi-473260340](https://www.linkedin.com/in/yasmine-daoudi-473260340)  
+- GitHub : [github.com/yasmenmad](https://github.com/yasmenmad)
