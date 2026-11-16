@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ombres Numériques — Morocco Infrastructure Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ombres Numériques — Plateforme d'Intelligence Territoriale &amp; SIG Maroc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
 <!-- TOPBAR -->
 <nav id="top">
-  <div class="t-logo">ONDR</div>
-  <div class="t-title">Ombres Numériques — SIG</div>
-  <div class="t-chip">Observatoire Régional</div>
-  <div style="width:1px;height:28px;background:var(--b1);flex-shrink:0"></div>
-  <div style="display:flex;align-items:center;gap:6px">
+  <a href="index.html" class="t-brand">
+    <div class="t-logo-badge">ON</div>
+    <span class="t-title">Ombres Numériques</span>
+  </a>
+  <span class="t-badge">Observatoire SIG</span>
+  <div style="width:1px;height:24px;background:var(--border);flex-shrink:0"></div>
+  <div class="live-indicator">
     <div class="pulse-dot"></div>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px">DATA 2023</span>
+    <span>DATA V2023.4 &bull; NATIONAL HCP / PNUD</span>
   </div>
   <div class="t-right">
     <a href="index.html" class="t-nav active">Accueil</a>
-    <a href="map.html" class="t-nav"> Cartographie SIG</a>
-    <a href="dashboard.html" class="t-nav"> Indicateurs Territoriaux</a>
-    <a href="map.html" class="t-nav cta">Accéder au SIG →</a>
+    <a href="map.html" class="t-nav">Cartographie SIG</a>
+    <a href="dashboard.html" class="t-nav">Indicateurs Territoriaux</a>
+    <a href="map.html" class="t-nav cta">Accéder au SIG</a>
   </div>
 </nav>
 
@@ -31,173 +34,172 @@
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
   
-  <div class="hero-float">
-    <div class="hf-label">Indicateurs Clés 2023</div>
-    <div class="hf-row">
-      <span class="hf-key">IDH</span>
-      <div class="hf-bar"><div class="hf-bar-fill" style="width:69.8%"></div></div>
-      <span class="hf-val">0.698</span>
-    </div>
-    <div class="hf-row">
-      <span class="hf-key">Pop. Rurale</span>
-      <div class="hf-bar"><div class="hf-bar-fill" style="width:37.3%"></div></div>
-      <span class="hf-val">37.3%</span>
-    </div>
-    <div class="hf-row">
-      <span class="hf-key">Lits/1000</span>
-      <div class="hf-bar"><div class="hf-bar-fill" style="width:14.6%"></div></div>
-      <span class="hf-val">0.73</span>
-    </div>
-    <div class="hf-row">
-      <span class="hf-key">Agences/100k</span>
-      <div class="hf-bar"><div class="hf-bar-fill" style="width:20.9%"></div></div>
-      <span class="hf-val">20.9</span>
-    </div>
-    <div class="hf-row">
-      <span class="hf-key">Pauvreté</span>
-      <div class="hf-bar"><div class="hf-bar-fill" style="width:3.9%"></div></div>
-      <span class="hf-val">3.9%</span>
-    </div>
-  </div>
+  <div class="hero-container">
+    <div class="hero-left">
+      <div class="hero-tag">Système d'Information Géographique &bull; Royaume du Maroc</div>
+      <h1 class="hero-title">
+        Cartographie des <span class="accent">Besoins Ruraux</span> &amp; Vulnérabilités
+      </h1>
+      <p class="hero-desc">
+        Plateforme d'aide à la décision territoriale modélisant les déficits d'équipements vitaux &mdash; santé, éducation, inclusion financière, réseaux d'eau et connectivité numérique &mdash; à travers les 12 régions marocaines.
+      </p>
 
-  <div class="hero-content">
-    <div class="hero-kicker fade-up">Plateforme d'Intelligence Territoriale — Maroc</div>
-    <h1 class="hero-title">
-      <span class="l1 fade-up d1">Ombres</span>
-      <span class="l2 fade-up d2">Numériques</span>
-    </h1>
-    <p class="hero-desc fade-up d3">
-      Cartographier les besoins infrastructurels des zones rurales marocaines — 
-      hôpitaux, écoles, banques, eau, électricité — pour orienter les décisions 
-      d'investissement et accélérer le développement territorial.
-    </p>
-    <div class="hero-stats-row fade-up d4">
-      <div class="hero-stat">
-        <span class="hs-val">12</span>
-        <span class="hs-lbl">Régions analysées</span>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="hs-val emerald">12</span>
+          <span class="hs-lbl">Régions</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hs-val">37.1M</span>
+          <span class="hs-lbl">Habitants</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hs-val amber">6</span>
+          <span class="hs-lbl">Secteurs Vitaux</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hs-val">0.698</span>
+          <span class="hs-lbl">IDH National</span>
+        </div>
       </div>
-      <div class="hero-stat">
-        <span class="hs-val">37M</span>
-        <span class="hs-lbl">Population couverte</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hs-val">6</span>
-        <span class="hs-lbl">Types d'infrastructure</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hs-val">4</span>
-        <span class="hs-lbl">Sources de données</span>
+
+      <div class="hero-cta-row">
+        <a href="map.html" class="hero-btn primary">
+          <span>Explorer la Carte SIG</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="dashboard.html" class="hero-btn secondary">
+          <span>Tableau de Bord Analytique</span>
+        </a>
       </div>
     </div>
-    <div class="hero-cta-row fade-up">
-      <a href="map.html" class="hero-cta primary"> Explorer la Cartographie SIG</a>
-      <a href="dashboard.html" class="hero-cta secondary"> Voir le Indicateurs Territoriaux</a>
+
+    <!-- Floating GIS Telemetry Box -->
+    <div class="hero-telemetry-box">
+      <div class="tb-header">
+        <span class="tb-title">Indicateurs Territoriaux Clés</span>
+        <span class="tb-badge">SYNTHÈSE 2023</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Indice de Dév. Humain (IDH)</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 69.8%;"></div></div>
+        <span class="tb-val">0.698</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Part Population Rurale</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 37.3%;"></div></div>
+        <span class="tb-val">37.3%</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Densité Lits Hospitaliers / 1k</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 14.6%;"></div></div>
+        <span class="tb-val">0.73</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Agences Bancaires / 100k hab.</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 20.9%;"></div></div>
+        <span class="tb-val">20.9</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Taux d'Électrification Rurale</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 99.4%;"></div></div>
+        <span class="tb-val">99.4%</span>
+      </div>
+
+      <div class="tb-item">
+        <span class="tb-key">Taux de Pauvreté Multidim.</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 3.9%;"></div></div>
+        <span class="tb-val">3.9%</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="sec">
-  <div class="kicker">La plateforme</div>
-  <h2 class="sec-title">Trois vues,<br>une <em>vision</em></h2>
-  <p class="sec-body">
-    Ombres Numériques combine données FAO, Banque Mondiale, PNUD et ONU pour 
-    révéler les inégalités d'accès aux services essentiels dans les zones rurales du Maroc.
-  </p>
+  <div class="sec-header">
+    <div class="kicker">Modules Fonctionnels</div>
+    <h2 class="sec-title">Trois Piliers d'Intelligence Analytique</h2>
+  </div>
+
   <div class="features-grid">
-    <a href="map.html" class="feat">
-      <div class="feat-num">01</div>
-      <div class="feat-icon"></div>
-      <div class="feat-tag">Cartographie SIG Interactive</div>
-      <h3>Cartographie SIG des besoins</h3>
-      <p>Visualisez en temps réel les scores de besoin par région. Cliquez sur chaque wilaya pour découvrir quels services manquent le plus et où concentrer les investissements.</p>
-      <div class="feat-arrow">Explorer la carte</div>
-    </a>
-    <a href="dashboard.html" class="feat">
-      <div class="feat-num">02</div>
-      <div class="feat-icon"></div>
-      <div class="feat-tag">Indicateurs Territoriaux analytique</div>
-      <h3>Tableaux de bord</h3>
-      <p>Suivez l'évolution de l'IDH depuis 1990, comparez les régions sur tous les indicateurs, et identifiez les tendances de développement rural vs urbain.</p>
-      <div class="feat-arrow">Voir le dashboard</div>
-    </a>
-    <a href="map.html#compare" class="feat">
-      <div class="feat-num">03</div>
-      <div class="feat-icon">️</div>
-      <div class="feat-tag">Comparaison régionale</div>
-      <h3>Analyse comparative</h3>
-      <p>Comparez côte à côte les performances des 12 régions sur hôpitaux, écoles, banques, eau, électricité et internet. Classements et scores de priorité inclus.</p>
-      <div class="feat-arrow">Comparer les régions</div>
-    </a>
-  </div>
-</section>
-
-<!-- DATA PREVIEW -->
-<section class="sec sec-alt">
-  <div class="kicker">Les données</div>
-  <h2 class="sec-title">Basé sur des <em>données réelles</em></h2>
-  <p class="sec-body">Quatre sources de données institutionnelles, couvrant 60 ans de développement marocain.</p>
-  <div class="data-grid">
-    <div class="data-card">
-      <div class="dc-label">IDH Maroc — Évolution 1990–2023</div>
-      <div class="chart-wrap" id="hdi-chart"></div>
-    </div>
-    <div class="data-card">
-      <div class="dc-label">Indicateurs Nationaux 2023</div>
-      <div class="stat-grid">
-        <div class="stat-item">
-          <div class="si-val">0.698</div>
-          <div class="si-lbl">IDH 2023</div>
-        </div>
-        <div class="stat-item">
-          <div class="si-val">75.1</div>
-          <div class="si-lbl">Espérance de vie</div>
-        </div>
-        <div class="stat-item">
-          <div class="si-val">0.73</div>
-          <div class="si-lbl">Lits hosp./1000</div>
-        </div>
-        <div class="stat-item">
-          <div class="si-val">13.4M</div>
-          <div class="si-lbl">Population rurale</div>
-        </div>
+    <a href="map.html" class="feat-card">
+      <div class="feat-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       </div>
-    </div>
+      <span class="feat-tag">Module SIG 01</span>
+      <h3>Cartographie Interactive des Besoins</h3>
+      <p>Couches vectorielles géospatiales Leaflet avec coloration choroplèthe adaptative. Cliquez sur chaque région pour inspecter les déficits d'équipements prioritaires.</p>
+      <div class="feat-link">
+        <span>Ouvrir la cartographie</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+    <a href="dashboard.html" class="feat-card">
+      <div class="feat-icon-wrap" style="background:rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.3);color:var(--indigo);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <span class="feat-tag">Module SIG 02</span>
+      <h3>Tableaux de Bord Analytiques</h3>
+      <p>Séries temporelles de l'IDH depuis 1990, corrélation entre taux de ruralité et accès à l'eau potable, et courbes de convergence territoriale.</p>
+      <div class="feat-link" style="color:var(--indigo);">
+        <span>Consulter les indicateurs</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+    <a href="map.html#compare" class="feat-card">
+      <div class="feat-icon-wrap" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.3);color:var(--amber);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <span class="feat-tag">Module SIG 03</span>
+      <h3>Indice de Priorité Territoriale</h3>
+      <p>Classement multicritère des 12 régions marocaines identifiant les poches d'urgence logistique pour optimiser les arbitrages budgétaires publics.</p>
+      <div class="feat-link" style="color:var(--amber);">
+        <span>Comparer les régions</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- REGIONS PREVIEW -->
-<section class="sec">
-  <div style="display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:start">
+<!-- REGIONS PRIORITY LIST -->
+<section class="sec" style="background: rgba(12, 16, 26, 0.4); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="regions-section-grid">
     <div>
-      <div class="kicker">Classement des besoins</div>
-      <h2 class="sec-title">Régions les plus<br><em>sous-équipées</em></h2>
-      <p class="sec-body">Score de besoin global (0–100) calculé sur 6 types d'infrastructure : hôpital, école, banque, eau, électricité, internet.</p>
-      <a href="map.html" class="hero-cta primary" style="display:inline-flex;margin-top:8px">Voir sur la carte →</a>
+      <div class="kicker">Priorisation de l'Équipement</div>
+      <h2 class="sec-title">Régions Sous Équipement Critique</h2>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; margin-top: 16px;">
+        Le score d'urgence territoriale (0 à 100) agrège 6 dimensions pondérées : lits hospitaliers par habitant, couverture scolaire, densité bancaire, réseaux d'eau potable, raccordement électrique et débit internet.
+      </p>
+      <a href="map.html" class="hero-btn primary">
+        <span>Afficher toutes les 12 Régions</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
     </div>
+
     <div>
-      <div class="regions-list" id="regions-list"></div>
+      <div id="regions-list"></div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo">
-    <div class="t-logo" style="flex-shrink:0"></div>
-    <div>
-      <div class="f-brand">Ombres Numériques — SIG</div>
-      <div class="f-copy">Morocco Infrastructure Intelligence</div>
-    </div>
-  </div>
-  <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);text-align:center;line-height:1.8">
-    Sources: FAO · Banque Mondiale · PNUD · UN SDG<br>
-    Données 2023 · Maroc
+  <div class="f-copy">
+    <strong>Ombres Numériques &bull; SIG Maroc</strong> &mdash; Intelligence territoriale &amp; modélisation des besoins en infrastructures vitales.
   </div>
   <div class="f-links">
     <a href="index.html" class="f-link">Accueil</a>
     <a href="map.html" class="f-link">Cartographie SIG</a>
     <a href="dashboard.html" class="f-link">Indicateurs Territoriaux</a>
+    <a href="https://github.com/yasmenmad/ombres-numeriques" target="_blank" class="f-link">GitHub Source</a>
   </div>
 </footer>
 
