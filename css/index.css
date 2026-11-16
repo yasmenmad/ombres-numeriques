@@ -1,8 +1,8 @@
 :root{
-  --bg:#07090a;--s1:#0d1114;--s2:#111518;--card:#131a1d;
-  --b1:#1a2428;--b2:#1e2c32;--b3:#243238;
-  --text:#e8e2d8;--muted:#5a7078;--dim:#1e2c32;
-  --gold:#d4a843;--gold2:#f0c060;--goldd:rgba(212,168,67,.12);
+  --bg:#090d16;--s1:#0d1114;--s2:#111518;--card:#101726;
+  --b1:#1a2333;--b2:#222f45;--b3:#2a3b57;
+  --text:#f1f5f9;--muted:#94a3b8;--dim:#1e2c32;
+  --gold:#c25e00;--gold2:#ea580c;--goldd:rgba(212,168,67,.12);
   --red:#c04a30;--green:#3a9e6a;--green2:#52b882;
   --blue:#2a5ab0;--blue2:#4272cc;
 }
