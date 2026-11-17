@@ -94,7 +94,7 @@ function showPanel(r){
   document.getElementById('ip-rural-val').textContent = `${(r.rural_pct*100).toFixed(0)}%`;
 
   const needsEl = document.getElementById('ip-needs');
-  const icons = {hospital:'🏥',school:'🏫',bank:'🏦',water:'💧',electricity:'⚡',internet:'📶'};
+  const icons = {hospital:'SANTE',school:'ECOLE',bank:'BANQUE',water:'EAU',electricity:'ELEC',internet:'NET'};
   const labels = {hospital:'Hôpital',school:'École',bank:'Banque',water:'Eau',electricity:'Électricité',internet:'Internet'};
   
   needsEl.innerHTML = Object.entries(r.needs).map(([k,v])=>`
@@ -112,6 +112,8 @@ function showPanel(r){
   document.querySelectorAll('.rr').forEach(el=>el.classList.remove('sel'));
 }
 
+function closeInfoPanel(){ document.getElementById('info-panel').classList.remove('show'); }
+window.closeInfoPanel = closeInfoPanel;
 function closePanel(){
   document.getElementById('info-panel').classList.remove('show');
 }

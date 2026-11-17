@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ombres Numériques — Carte des Besoins</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="libs/leaflet.min.css"/>
-<link rel="stylesheet" href="css/map.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ombres Numériques — Cartographie SIG des Besoins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="libs/leaflet.min.css"/>
+  <link rel="stylesheet" href="css/map.css">
 </head>
 <body>
 
 <nav id="top">
-  <div class="t-logo">Ω</div>
-  <div class="t-title">Ombres Numériques — SIG</div>
-  <div class="t-chip">Carte des Besoins</div>
-  <div style="width:1px;height:26px;background:var(--b1)"></div>
+  <a href="index.html" class="t-brand">
+    <div class="t-logo-badge">ON</div>
+    <span class="t-title">Ombres Numériques</span>
+  </a>
+  <span class="t-badge">Cartographie SIG</span>
+  <div style="width:1px;height:24px;background:var(--border);flex-shrink:0"></div>
   <div class="pulse-dot"></div>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px">LIVE DATA</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px">CHOROPLETH V2.4 &bull; COUVERTURE 12 RÉGIONS</span>
   <div class="t-right">
-    <a href="index.html" class="t-btn">← Accueil</a>
-    <a href="dashboard.html" class="t-btn"> Indicateurs</a>
+    <a href="index.html" class="t-btn">Accueil</a>
+    <a href="dashboard.html" class="t-btn">Indicateurs Territoriaux</a>
   </div>
 </nav>
 
@@ -27,50 +30,50 @@
   <!-- SIDEBAR -->
   <div id="sb">
     <!-- Filter by service -->
-    <div class="sb-s">
-      <div class="sb-lbl">Filtrer par service</div>
+    <div class="sb-section">
+      <div class="sb-lbl">Filtrer par Secteur d'Infrastructure</div>
       <div class="pills">
-        <div class="pill on" data-layer="all"><div class="pill-dot" style="background:var(--gold)"></div>Tout</div>
-        <div class="pill" data-layer="hospital"><div class="pill-dot" style="background:#e06848"></div>Hôpital</div>
-        <div class="pill" data-layer="school"><div class="pill-dot" style="background:#4272cc"></div>École</div>
-        <div class="pill" data-layer="bank"><div class="pill-dot" style="background:#52b882"></div>Banque</div>
-        <div class="pill" data-layer="water"><div class="pill-dot" style="background:#2a8888"></div>Eau</div>
-        <div class="pill" data-layer="electricity"><div class="pill-dot" style="background:#d4a843"></div>Électricité</div>
-        <div class="pill" data-layer="internet"><div class="pill-dot" style="background:#7a40b8"></div>Internet</div>
+        <div class="pill on" data-layer="all"><div class="pill-dot" style="background:var(--emerald)"></div>Tous Secteurs</div>
+        <div class="pill" data-layer="hospital"><div class="pill-dot" style="background:var(--red)"></div>Santé / Hôpital</div>
+        <div class="pill" data-layer="school"><div class="pill-dot" style="background:var(--blue)"></div>Éducation</div>
+        <div class="pill" data-layer="bank"><div class="pill-dot" style="background:var(--amber)"></div>Agences / Banque</div>
+        <div class="pill" data-layer="water"><div class="pill-dot" style="background:#06b6d4"></div>Eau Potable</div>
+        <div class="pill" data-layer="electricity"><div class="pill-dot" style="background:#eab308"></div>Électricité</div>
+        <div class="pill" data-layer="internet"><div class="pill-dot" style="background:var(--indigo)"></div>Connectivité</div>
       </div>
     </div>
 
     <!-- Legend -->
-    <div class="sb-s">
-      <div class="sb-lbl">Score de besoin</div>
+    <div class="sb-section">
+      <div class="sb-lbl">Indice de Priorité &amp; Besoin</div>
       <div class="leg-gradient"></div>
       <div class="leg-ticks">
-        <span>0 — Équipé</span>
-        <span>50 — Moyen</span>
-        <span>100 — Urgent</span>
+        <span>0 &mdash; Équipé</span>
+        <span>50 &mdash; Vulnérable</span>
+        <span>100 &mdash; Critique</span>
       </div>
     </div>
 
-    <!-- Layers -->
-    <div class="sb-s">
-      <div class="sb-lbl">Calques</div>
+    <!-- Filter Toggles -->
+    <div class="sb-section">
+      <div class="sb-lbl">Filtres de Gravité</div>
       <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:#c04a30"></div>Zones critiques</div>
+        <div class="tr-left"><div class="tr-dot" style="background:var(--red)"></div>Zones Critiques (&ge; 70)</div>
         <div class="tog on" id="tog-critical"></div>
       </div>
       <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:#c07820"></div>Zones moyennes</div>
+        <div class="tr-left"><div class="tr-dot" style="background:var(--amber)"></div>Zones Vulnérables (40-69)</div>
         <div class="tog on" id="tog-medium"></div>
       </div>
       <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:#3a9e6a"></div>Zones équipées</div>
+        <div class="tr-left"><div class="tr-dot" style="background:var(--emerald)"></div>Zones Modérément Équipées (&lt; 40)</div>
         <div class="tog on" id="tog-good"></div>
       </div>
     </div>
 
     <!-- Region ranking -->
-    <div class="sb-s">
-      <div class="sb-lbl">Classement régional</div>
+    <div class="sb-section" style="padding-bottom: 8px;">
+      <div class="sb-lbl">Classement des 12 Régions</div>
     </div>
     <div id="rank-list"></div>
   </div>
@@ -79,31 +82,20 @@
   <div id="map-wrap">
     <div id="map"></div>
 
-    <!-- Info panel (right side) -->
+    <!-- Info Panel HUD -->
     <div id="info-panel">
-      <button class="ip-close" onclick="closePanel()"></button>
-      <div class="ip-region" id="ip-name">—</div>
-      <div class="ip-pop" id="ip-pop">—</div>
-      <div class="ip-score-big" id="ip-score">—</div>
-      <div class="ip-score-lbl">Score de besoin global</div>
-      <div class="ip-needs" id="ip-needs"></div>
-      <div class="ip-rural">
-        <span>Population rurale</span>
-        <span id="ip-rural-val">—</span>
+      <button class="ip-close" onclick="closeInfoPanel()">&times;</button>
+      <div class="ip-title" id="ip-name">Nom de la Région</div>
+      <div class="ip-meta" id="ip-meta">Population &bull; Taux de ruralité</div>
+      
+      <div class="ip-score-box">
+        <span class="ip-score-lbl">Indice de Priorité</span>
+        <span class="ip-score-val" id="ip-score">0</span>
       </div>
-    </div>
 
-    <!-- Map legend -->
-    <div id="map-legend">
-      <div class="ml-t">Légende</div>
-      <div class="ml-item"><div class="ml-swatch" style="background:#c04a30"></div>Besoin critique (>70)</div>
-      <div class="ml-item"><div class="ml-swatch" style="background:#c07820"></div>Besoin moyen (40–70)</div>
-      <div class="ml-item"><div class="ml-swatch" style="background:#3a9e6a"></div>Bien équipé (<40)</div>
-    </div>
-
-    <div class="zoom-controls">
-      <button class="zb" onclick="mapObj.zoomIn()">+</button>
-      <button class="zb" onclick="mapObj.zoomOut()">−</button>
+      <div class="ip-breakdown" id="ip-breakdown">
+        <!-- Injected via JS -->
+      </div>
     </div>
   </div>
 </div>

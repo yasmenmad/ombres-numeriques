@@ -3,9 +3,9 @@ const D = {"regions": [{"id": "TAN", "name": "Tanger-Tétouan-Al Hoceïma", "lat
 ;
 
 // ── CONFIG ───────────────────────────────────────────────────────────────────
-Chart.defaults.color = '#5a7078';
-Chart.defaults.borderColor = '#1a2428';
-Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+Chart.defaults.font.family = "'Space Grotesk', sans-serif";
 Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(7,9,10,.96)';
 Chart.defaults.plugins.tooltip.borderColor = '#1a2428';
 Chart.defaults.plugins.tooltip.borderWidth = 1;
@@ -14,7 +14,7 @@ Chart.defaults.plugins.tooltip.bodyColor = '#e8e2d8';
 
 const C = {gold:'#d4a843',green:'#3a9e6a',red:'#c04a30',orange:'#c07820',blue:'#2a5ab0',purple:'#7a40b8',teal:'#2a8888'};
 const SC = {hospital:C.red,school:C.blue,bank:C.green,water:C.teal,electricity:C.gold,internet:C.purple};
-const SI = {hospital:'🏥',school:'🏫',bank:'🏦',water:'💧',electricity:'⚡',internet:'📶'};
+const SI = {hospital:'SANTE',school:'ECOLE',bank:'BANQUE',water:'EAU',electricity:'ELEC',internet:'INTERNET'};
 const SL = {hospital:'Hôpital',school:'École',bank:'Banque',water:'Eau',electricity:'Électricité',internet:'Internet'};
 const getColor = s => s>=70?C.red:s>=40?C.orange:C.green;
 

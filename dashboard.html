@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ombres Numériques — Dashboard</title>
+<title>Ombres Numeriques - Dashboard Analytique SIG</title>
 <script src="libs/chart.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 <nav id="top">
-  <div class="t-logo">Ω</div>
-  <div class="t-title">Ombres Numériques — SIG</div>
-  <div class="t-chip">Dashboard Analytique</div>
-  <div style="width:1px;height:26px;background:var(--b1)"></div>
+  <div class="t-logo">
+    <div class="t-badge">ON</div>
+    <div class="t-title">Ombres <span>Numeriques</span></div>
+  </div>
+  <div class="t-chip">Observatoire SIG Analytique</div>
+  <div style="width:1px;height:24px;background:var(--border)"></div>
   <div class="pulse"></div>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px">MAROC 2023</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1.5px">TELEMETRIE 2023</span>
   <div class="t-right">
-    <a href="index.html" class="t-btn">← Accueil</a>
-    <a href="map.html" class="t-btn"> Cartographie SIG</a>
+    <a href="index.html" class="t-btn">&larr; Accueil</a>
+    <a href="map.html" class="t-btn primary">Cartographie SIG &rarr;</a>
   </div>
 </nav>
 
@@ -28,73 +32,73 @@
     <div class="src">World Bank</div>
     <div class="src">UNDP HDR</div>
     <div class="src">UN SDG</div>
-    <div class="src">Données 2023</div>
+    <div class="src">Donnees Officielles 2023</div>
   </div>
 
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-val">0.698</div>
-      <div class="kpi-delta up">↑ +0.247 depuis 1990</div>
-      <div class="kpi-lbl">IDH 2023</div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)"></div>
+      <div class="kpi-delta up">+0.247 depuis 1990</div>
+      <div class="kpi-lbl">IDH National 2023</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--emerald)"></div>
     </div>
     <div class="kpi">
-      <div class="kpi-val">75.1</div>
-      <div class="kpi-delta up">↑ +16.8 ans</div>
-      <div class="kpi-lbl">Espérance de vie</div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green)"></div>
+      <div class="kpi-val">75.1 ans</div>
+      <div class="kpi-delta up">+16.8 ans de gain</div>
+      <div class="kpi-lbl">Esperance de vie</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--blue)"></div>
     </div>
     <div class="kpi">
       <div class="kpi-val">37.3%</div>
-      <div class="kpi-delta down">↓ 13.4M ruraux</div>
+      <div class="kpi-delta down">13.4M ruraux</div>
       <div class="kpi-lbl">Population rurale</div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber)"></div>
     </div>
     <div class="kpi">
       <div class="kpi-val">0.73</div>
-      <div class="kpi-delta down">↓ Objectif OMS: 2.5</div>
-      <div class="kpi-lbl">Lits hosp./1000</div>
+      <div class="kpi-delta down">Seuil OMS: 2.50</div>
+      <div class="kpi-lbl">Lits hosp. / 1000 hab.</div>
       <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red)"></div>
     </div>
     <div class="kpi">
       <div class="kpi-val">20.9</div>
-      <div class="kpi-delta down">↓ Concentré villes</div>
-      <div class="kpi-lbl">Agences banc./100k</div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--blue)"></div>
+      <div class="kpi-delta down">Concentration urbaine</div>
+      <div class="kpi-lbl">Agences banc. / 100k</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--indigo)"></div>
     </div>
   </div>
 
   <!-- Charts row 1 -->
-  <h2 class="sec-title">Évolution <em>Historique</em></h2>
+  <h2 class="sec-title">Evolution <em>Historique</em></h2>
   <div class="grid2">
     <div class="card">
-      <div class="card-lbl">IDH Maroc — 1990 à 2023</div>
+      <div class="card-lbl">Indice de Developpement Humain (1990 - 2023)</div>
       <canvas id="hdiChart" height="200"></canvas>
     </div>
     <div class="card">
-      <div class="card-lbl">Population Rurale vs Urbaine (milliers)</div>
+      <div class="card-lbl">Demographie : Population Rurale vs Urbaine (milliers)</div>
       <canvas id="popChart" height="200"></canvas>
     </div>
   </div>
 
   <!-- Charts row 2 -->
-  <h2 class="sec-title">Besoins <em>par Région</em></h2>
+  <h2 class="sec-title">Besoins <em>par Region</em></h2>
   <div class="grid2">
     <div class="card">
-      <div class="card-lbl">Score de priorité par région</div>
+      <div class="card-lbl">Indice de Priorite Territoriale (0-100)</div>
       <canvas id="barChart" height="260"></canvas>
     </div>
     <div class="card">
-      <div class="card-lbl">Top 4 régions à risque — Radar</div>
+      <div class="card-lbl">Profil Comparatif des 4 Territoires Prioritaires</div>
       <canvas id="radarChart" height="260"></canvas>
     </div>
   </div>
 
   <!-- Heatmap -->
   <h2 class="sec-title">Cartographie SIG de <em>Chaleur</em></h2>
-  <div class="card" style="margin-bottom:24px">
-    <div class="card-lbl">Matrice besoins — 12 régions × 6 services (0=équipé · 100=urgent)</div>
+  <div class="card" style="margin-bottom:28px">
+    <div class="card-lbl">Matrice Sectorielle d'Urgence : 12 Regions x 6 Services Essentiels</div>
     <div id="heatmap"></div>
   </div>
 
@@ -102,17 +106,17 @@
   <h2 class="sec-title">Analyse par <em>Service</em></h2>
   <div class="grid3">
     <div class="card">
-      <div class="card-lbl">Répartition moyenne</div>
+      <div class="card-lbl">Repartition Macro</div>
       <canvas id="donutChart" height="220"></canvas>
     </div>
-    <div class="card" style="grid-column:span 2">
-      <div class="card-lbl">Moyenne nationale par service</div>
+    <div class="card">
+      <div class="card-lbl">Moyenne Nationale par Secteur de Service</div>
       <canvas id="serviceChart" height="220"></canvas>
     </div>
   </div>
 
   <!-- Region cards -->
-  <h2 class="sec-title">Fiches <em>Régionales</em></h2>
+  <h2 class="sec-title">Fiches <em>Territoriales Detaillee</em></h2>
   <div class="rc-grid" id="rc-grid"></div>
 </div>
 
