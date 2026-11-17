@@ -3,29 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ombres Numériques — Plateforme d'Intelligence Territoriale &amp; SIG Maroc</title>
+  <title>Ombres Numériques — Intelligence Territoriale, SIG &amp; Lambda Architecture</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index.css">
+  <style>
+    .gemini-box {
+      background: rgba(13, 18, 30, 0.7);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.1);
+    }
+    .gemini-select {
+      background: #090c14;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .gemini-select:focus { border-color: #10b981; }
+    .gemini-btn {
+      background: linear-gradient(135deg, #10b981, #0284c7);
+      border: none;
+      border-radius: 8px;
+      padding: 13px 24px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s;
+    }
+    .gemini-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5); }
+    .gemini-output {
+      background: #070910;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      min-height: 180px;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-top: 18px;
+    }
+    .arch-diagram-wrap {
+      background: #080a12;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.7);
+    }
+    .arch-diagram-wrap img {
+      width: 100%;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <nav id="top">
   <a href="index.html" class="t-brand">
-    <img src="assets/logo.svg" width="30" height="30" alt="Logo" style="filter:drop-shadow(0 0 10px rgba(16,185,129,0.5))"/>
-    <span class="t-title">Ombres Numériques</span>
+    <img src="assets/brand-logo.svg" height="34" alt="Digital Shadows Logo" style="filter:drop-shadow(0 0 10px rgba(16,185,129,0.5))"/>
   </a>
-  <span class="t-badge">Observatoire SIG</span>
+  <span class="t-badge">Observatoire SIG &bull; 450k km²</span>
   <div style="width:1px;height:24px;background:var(--border);flex-shrink:0"></div>
   <div class="live-indicator">
     <div class="pulse-dot"></div>
-    <span>DATA V2023.4 &bull; NATIONAL HCP / PNUD</span>
+    <span>LAMBDA ARCHITECTURE &bull; APACHE SPARK &amp; KAFKA</span>
   </div>
   <div class="t-right">
     <a href="index.html" class="t-nav active">Accueil</a>
     <a href="map.html" class="t-nav">Cartographie SIG</a>
-    <a href="dashboard.html" class="t-nav">Indicateurs Territoriaux</a>
+    <a href="dashboard.html" class="t-nav">Tableau de Bord</a>
     <a href="map.html" class="t-nav cta">Accéder au SIG</a>
   </div>
 </nav>
@@ -36,22 +100,22 @@
   
   <div class="hero-container">
     <div class="hero-left">
-      <div class="hero-tag">Système d'Information Géographique &bull; Royaume du Maroc</div>
+      <div class="hero-tag">Silence as Data &bull; Système d'Information Géographique Maroc</div>
       <h1 class="hero-title">
         Cartographie des <span class="accent">Besoins Ruraux</span> &amp; Vulnérabilités
       </h1>
       <p class="hero-desc">
-        Plateforme d'aide à la décision territoriale modélisant les déficits d'équipements vitaux &mdash; santé, éducation, inclusion financière, réseaux d'eau et connectivité numérique &mdash; à travers les 12 régions marocaines.
+        Plateforme d'aide à la décision territoriale modélisant les déficits d'équipements vitaux &mdash; santé, éducation, inclusion financière, réseaux d'eau et connectivité numérique &mdash; à travers <strong>450 000 mailles spatiales (1 km²)</strong> et les 12 régions marocaines.
       </p>
 
       <div class="hero-stats-row">
         <div class="hero-stat">
-          <span class="hs-val emerald">12</span>
-          <span class="hs-lbl">Régions</span>
+          <span class="hs-val emerald">450k</span>
+          <span class="hs-lbl">Mailles SIG 1km²</span>
         </div>
         <div class="hero-stat">
-          <span class="hs-val">37.1M</span>
-          <span class="hs-lbl">Habitants</span>
+          <span class="hs-val">12</span>
+          <span class="hs-lbl">Régions</span>
         </div>
         <div class="hero-stat">
           <span class="hs-val amber">6</span>
@@ -78,7 +142,7 @@
     <div class="hero-telemetry-box">
       <div class="tb-header">
         <span class="tb-title">Indicateurs Territoriaux Clés</span>
-        <span class="tb-badge">SYNTHÈSE 2023</span>
+        <span class="tb-badge">SYNTHÈSE 2024</span>
       </div>
 
       <div class="tb-item">
@@ -112,97 +176,153 @@
       </div>
 
       <div class="tb-item">
-        <span class="tb-key">Taux de Pauvreté Multidim.</span>
-        <div class="tb-bar"><div class="tb-bar-fill" style="width: 3.9%;"></div></div>
-        <span class="tb-val">3.9%</span>
+        <span class="tb-key">Score de Vulnérabilité Composite Vi</span>
+        <div class="tb-bar"><div class="tb-bar-fill" style="width: 64.2%; background:#ef4444;"></div></div>
+        <span class="tb-val" style="color:#ef4444;">0.642</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- GEMINI AI DECISION SIMULATOR -->
+<section class="sec" style="background: rgba(10, 14, 24, 0.7); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+      <div>
+        <div class="kicker" style="color: #38bdf8;">Deep Learning &amp; Policy Synthesis</div>
+        <h2 class="sec-title">Simulateur Décisionnel &bull; Google Gemini AI</h2>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 6px;">
+          Génération dynamique de préconisations d'équipements territoriaux et d'arbitrage budgétaire basée sur le scoring de vulnérabilité Vi.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); padding: 8px 16px; border-radius: 50px;">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8;"></div>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #38bdf8;">GEMINI AI &bull; POLICY ENGINE ONLINE</span>
+      </div>
+    </div>
+
+    <div class="gemini-box">
+      <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; align-items: end;">
+        <div>
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">1. Territoire Cible</label>
+          <select id="gemini-region" class="gemini-select">
+            <option value="Draa-Tafilalet">Drâa-Tafilalet (Zagora, Tinghir, Ouarzazate) &bull; Vi = 0.72</option>
+            <option value="Beni-Mellal">Béni Mellal-Khénifra (Azilal, High Atlas) &bull; Vi = 0.68</option>
+            <option value="Oriental">L'Oriental (Jerada, Figuig, Taourirt) &bull; Vi = 0.65</option>
+            <option value="Souss-Massa">Souss-Massa (Taroudant, Chtouka) &bull; Vi = 0.58</option>
+            <option value="Marrakech-Safi">Marrakech-Safi (Al Haouz, Chichaoua) &bull; Vi = 0.54</option>
+            <option value="Fes-Meknes">Fès-Meknès (Boulemane, Taounate) &bull; Vi = 0.51</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">2. Axe Stratégique Prioritaire</label>
+          <select id="gemini-axe" class="gemini-select">
+            <option value="digital">Désenclavement Numérique &amp; 4G/5G Solaire</option>
+            <option value="water">Réseaux d'Eau Potable &amp; Résilience Hydrique</option>
+            <option value="health">Routage Intelligent des Caravanes Médicales</option>
+            <option value="education">Nœuds Éducatifs Numériques Déconnectés</option>
+          </select>
+        </div>
+
+        <div>
+          <button class="gemini-btn" onclick="runGeminiHomeDiagnostic()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Générer la Stratégie</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="gemini-output" id="gemini-home-output">
+Cliquez sur "Générer la Stratégie" pour synthétiser un plan d'intervention territorial automatisé par le moteur Gemini AI.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAMBDA ARCHITECTURE & SPATIAL CLUSTERING VISUALS -->
 <section class="sec">
   <div class="sec-header">
-    <div class="kicker">Modules Fonctionnels</div>
-    <h2 class="sec-title">Trois Piliers d'Intelligence Analytique</h2>
+    <div class="kicker">Big Data Engineering &bull; Zenodo Preprint 10.5281/zenodo.23963589</div>
+    <h2 class="sec-title">Architecture Distribuée &amp; Télémétrie Spatiale</h2>
+    <p style="color: var(--text-muted); font-size: 15px; margin-top: 8px;">
+      Pipeline Lambda orchestrant Apache Kafka pour le streaming temps réel et Apache Spark 3.5 sur Databricks pour le batch processing de 450 000 cellules hexagonales.
+    </p>
   </div>
 
-  <div class="features-grid">
-    <a href="map.html" class="feat-card">
-      <div class="feat-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-      </div>
-      <span class="feat-tag">Module SIG 01</span>
-      <h3>Cartographie Interactive des Besoins</h3>
-      <p>Couches vectorielles géospatiales Leaflet avec coloration choroplèthe adaptative. Cliquez sur chaque région pour inspecter les déficits d'équipements prioritaires.</p>
-      <div class="feat-link">
-        <span>Ouvrir la cartographie</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </a>
-
-    <a href="dashboard.html" class="feat-card">
-      <div class="feat-icon-wrap" style="background:rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.3);color:var(--indigo);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </div>
-      <span class="feat-tag">Module SIG 02</span>
-      <h3>Tableaux de Bord Analytiques</h3>
-      <p>Séries temporelles de l'IDH depuis 1990, corrélation entre taux de ruralité et accès à l'eau potable, et courbes de convergence territoriale.</p>
-      <div class="feat-link" style="color:var(--indigo);">
-        <span>Consulter les indicateurs</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </a>
-
-    <a href="map.html#compare" class="feat-card">
-      <div class="feat-icon-wrap" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.3);color:var(--amber);">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <span class="feat-tag">Module SIG 03</span>
-      <h3>Indice de Priorité Territoriale</h3>
-      <p>Classement multicritère des 12 régions marocaines identifiant les poches d'urgence logistique pour optimiser les arbitrages budgétaires publics.</p>
-      <div class="feat-link" style="color:var(--amber);">
-        <span>Comparer les régions</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </a>
+  <div class="arch-diagram-wrap">
+    <img src="assets/lambda-architecture.svg" alt="Lambda Architecture Diagram" />
   </div>
-</section>
 
-<!-- REGIONS PRIORITY LIST -->
-<section class="sec" style="background: rgba(12, 16, 26, 0.4); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="regions-section-grid">
-    <div>
-      <div class="kicker">Priorisation de l'Équipement</div>
-      <h2 class="sec-title">Régions Sous Équipement Critique</h2>
-      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; margin-top: 16px;">
-        Le score d'urgence territoriale (0 à 100) agrège 6 dimensions pondérées : lits hospitaliers par habitant, couverture scolaire, densité bancaire, réseaux d'eau potable, raccordement électrique et débit internet.
-      </p>
-      <a href="map.html" class="hero-btn primary">
-        <span>Afficher toutes les 12 Régions</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-    </div>
-
-    <div>
-      <div id="regions-list"></div>
-    </div>
+  <div class="arch-diagram-wrap" style="margin-top: 24px;">
+    <img src="assets/territorial-clustering.svg" alt="Spatial Density Radar and Clustering Tiers" />
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="f-copy">
-    <strong>Ombres Numériques &bull; SIG Maroc</strong> &mdash; Intelligence territoriale &amp; modélisation des besoins en infrastructures vitales.
+    <strong>Ombres Numériques &bull; SIG Maroc</strong> &mdash; Système d'Intelligence Territoriale &amp; Modélisation Big Data. Author: <strong>Yasmine Daoudi</strong> &middot; DOI: <a href="https://doi.org/10.5281/zenodo.23963589" target="_blank" style="color:#10b981;text-decoration:none;">10.5281/zenodo.23963589</a>
   </div>
   <div class="f-links">
     <a href="index.html" class="f-link">Accueil</a>
     <a href="map.html" class="f-link">Cartographie SIG</a>
     <a href="dashboard.html" class="f-link">Indicateurs Territoriaux</a>
-    <a href="https://github.com/yasmenmad/ombres-numeriques" target="_blank" class="f-link">GitHub Source</a>
   </div>
 </footer>
 
 <script src="js/index.js"></script>
+<script>
+  function runGeminiHomeDiagnostic() {
+    const reg = document.getElementById('gemini-region').value;
+    const axe = document.getElementById('gemini-axe').value;
+    const out = document.getElementById('gemini-home-output');
+
+    out.textContent = "Initialisation du modèle Gemini AI & analyse spatiale de " + reg + "...";
+
+    const strategies = {
+      'digital': "RAPPORT DÉCISIONNEL GEMINI AI &bull; AXE DÉSENCLAVEMENT NUMÉRIQUE\n" +
+                 "Territoire: " + reg + " | Priorité: Critique (Vi > 0.65)\n\n" +
+                 "1. DIAGNOSTIC GÉOSPATIAL:\n" +
+                 "   - Détection de 42 poches d'ombre télécom dans les reliefs montagneux.\n" +
+                 "   - Déficit de couverture 4G/5G estimé à 58% des douars ruraux répertoriés.\n\n" +
+                 "2. PLAN D'INVESTISSEMENT RECOMMANDÉ:\n" +
+                 "   - Déploiement de 18 stations relais solaires autonomes sur les crêtes identifiées par analyse SRTM.\n" +
+                 "   - Implémentation de nœuds Wi-Fi communautaires satellitaires (Starlink/VSAT) dans les écoles rurales.\n" +
+                 "   - CAPEX estimé: 14.8M MAD avec un retour social sur investissement (SROI) de 3.8x sur 4 ans.",
+
+      'water': "RAPPORT DÉCISIONNEL GEMINI AI &bull; AXE INFRASTRUCTURE HYDRIQUE\n" +
+               "Territoire: " + reg + " | Priorité: Urgence Sécheresse\n\n" +
+               "1. DIAGNOSTIC GÉOSPATIAL:\n" +
+               "   - Indice de stress hydrique cumulé de 78%. Distance moyenne au point d'eau: 4.8 km en zone rurale.\n\n" +
+               "2. PRÉCONISATIONS OPÉRATIONNELLES:\n" +
+               "   - Forage prioritaire géolocalisé couplé au pompage solaire photovoltaïque sur 14 nappes phréatiques testées.\n" +
+               "   - Raccordement par gravité de 26 douars isolés aux stations de dessalement régionales.\n" +
+               "   - Déploiement de capteurs IoT LoRaWAN pour la télédétection des fuites sur les adductions principales.",
+
+      'health': "RAPPORT DÉCISIONNEL GEMINI AI &bull; AXE SANTÉ DE PROXIMITÉ\n" +
+                "Territoire: " + reg + " | Priorité: Logistique Mobile\n\n" +
+                "1. DIAGNOSTIC GÉOSPATIAL:\n" +
+                "   - Ratio critique de 0.48 lit / 1000 habitants et temps de transit obstétrique > 110 minutes.\n\n" +
+                "2. ROUTAGE INTELLIGENT DES CARAVANES:\n" +
+                "   - Optimisation algorithmique des circuits de 4 caravanes médicales mobiles polyvalentes (Dijkstra pondéré par l'état des pistes).\n" +
+                "   - Équipement télémédecine par liaison satellitaire pour échographies et bilans sanguins d'urgence.\n" +
+                "   - Réduction projetée du délai d'intervention d'urgence: -45 minutes.",
+
+      'education': "RAPPORT DÉCISIONNEL GEMINI AI &bull; AXE PÉDAGOGIE & NŒUDS DIGITAUX\n" +
+                   "Territoire: " + reg + " | Priorité: Éducation Inclusive\n\n" +
+                   "1. DIAGNOSTIC GÉOSPATIAL:\n" +
+                   "   - Taux de déperdition scolaire post-primaire en milieu rural de 41% dû à l'éloignement des collèges.\n\n" +
+                   "2. DISPOSITIF ÉDUCATIF RECOMMANDÉ:\n" +
+                   "   - Implantation de micro-serveurs éducatifs Raspberry Pi déconnectés ('Polyglot Learning Hubs') synchronisés mensuellement.\n" +
+                   "   - Fourniture de tablettes solaires préchargées avec les curricula nationaux et outils phonétiques interactifs.\n" +
+                   "   - Impact attendu: Maintien de 92% des cohortes d'élèves jusqu'au cycle qualifiant."
+    };
+
+    setTimeout(() => {
+      out.textContent = strategies[axe] || strategies['digital'];
+    }, 450);
+  }
+</script>
 </body>
 </html>

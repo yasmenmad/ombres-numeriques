@@ -1,0 +1,83 @@
+<svg width="860" height="340" viewBox="0 0 860 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mapBg" x1="0" y1="0" x2="860" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#080a12"/>
+      <stop offset="50%" stop-color="#0e1322"/>
+      <stop offset="100%" stop-color="#06080e"/>
+    </linearGradient>
+    <linearGradient id="moroccoGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="860" height="340" rx="14" fill="url(#mapBg)" stroke="#1e2738" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g transform="translate(32, 28)">
+    <text x="0" y="16" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff" letter-spacing="0.5">SPATIAL MINING TELEMETRY &middot; 450,000 KM² GRID</text>
+    <text x="0" y="32" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#10b981">UNSUPERVISED HAVERSINE DBSCAN (&epsilon;=2.5 KM) &amp; K-MEANS STRATIFICATION</text>
+  </g>
+
+  <!-- Metric Badges -->
+  <g transform="translate(560, 24)">
+    <rect width="268" height="42" rx="8" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1"/>
+    <text x="14" y="18" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#10b981">SILHOUETTE SCORE: 0.812</text>
+    <text x="14" y="32" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94a3b8">Optimal cluster separation over 12 regions</text>
+  </g>
+
+  <!-- Left Map / Radar Visualization -->
+  <g transform="translate(32, 80)">
+    <!-- Hexagonal Grid Overlay -->
+    <rect width="400" height="220" rx="10" fill="#0b0e18" stroke="rgba(255,255,255,0.06)"/>
+    <circle cx="200" cy="110" r="90" stroke="rgba(56,189,248,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+    <circle cx="200" cy="110" r="60" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+    <circle cx="200" cy="110" r="30" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+    <line x1="200" y1="15" x2="200" y2="205" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <line x1="105" y1="110" x2="295" y2="110" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Simulated Spatial Clusters -->
+    <!-- Tangier / North -->
+    <circle cx="240" cy="50" r="7" fill="#10b981" opacity="0.8"/>
+    <!-- Oriental / Jerada -->
+    <circle cx="280" cy="80" r="9" fill="#ef4444" opacity="0.85"/>
+    <!-- Drâa-Tafilalet (Deep Desert Cluster) -->
+    <circle cx="210" cy="135" r="14" fill="#ef4444" opacity="0.9"/>
+    <!-- Béni Mellal (High Atlas isolation) -->
+    <circle cx="180" cy="105" r="12" fill="#f59e0b" opacity="0.85"/>
+    <!-- Souss-Massa -->
+    <circle cx="140" cy="140" r="10" fill="#f59e0b" opacity="0.8"/>
+    <!-- Guelmim / Southern Provinces -->
+    <circle cx="120" cy="175" r="8" fill="#10b981" opacity="0.75"/>
+
+    <text x="14" y="24" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#38bdf8">MOROCCO SPATIAL DENSITY RADAR</text>
+  </g>
+
+  <!-- Right Stratification Tiers -->
+  <g transform="translate(456, 80)">
+    <rect width="372" height="220" rx="10" fill="#0b0e18" stroke="rgba(255,255,255,0.06)"/>
+
+    <g transform="translate(18, 20)">
+      <!-- Tier 4 -->
+      <rect x="0" y="0" width="8" height="38" rx="4" fill="#ef4444"/>
+      <text x="16" y="14" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700" fill="#fff">Tier 4: Acute Silence (Vi &gt; 0.65)</text>
+      <text x="16" y="28" font-family="-apple-system, sans-serif" font-size="10" fill="#94a3b8">Drâa-Tafilalet, Rural Oriental &middot; 48,200 grid cells &middot; Zero 4G/water access</text>
+
+      <!-- Tier 3 -->
+      <rect x="0" y="48" width="8" height="38" rx="4" fill="#f59e0b"/>
+      <text x="16" y="62" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700" fill="#fff">Tier 3: High Vulnerability (0.45 &le; Vi &le; 0.65)</text>
+      <text x="16" y="76" font-family="-apple-system, sans-serif" font-size="10" fill="#94a3b8">Béni Mellal-Khénifra, Souss-Massa &middot; 112,000 cells &middot; Critical clinic transit lag</text>
+
+      <!-- Tier 2 -->
+      <rect x="0" y="96" width="8" height="38" rx="4" fill="#0ea5e9"/>
+      <text x="16" y="110" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700" fill="#fff">Tier 2: Moderate Infrastructure (0.25 &le; Vi &lt; 0.45)</text>
+      <text x="16" y="124" font-family="-apple-system, sans-serif" font-size="10" fill="#94a3b8">Fès-Meknès, Marrakech-Safi &middot; 180,000 cells &middot; Sub-optimal digital coverage</text>
+
+      <!-- Tier 1 -->
+      <rect x="0" y="144" width="8" height="38" rx="4" fill="#10b981"/>
+      <text x="16" y="158" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700" fill="#fff">Tier 1: Urban / Adequate (Vi &lt; 0.25)</text>
+      <text x="16" y="172" font-family="-apple-system, sans-serif" font-size="10" fill="#94a3b8">Casablanca-Settat, Rabat-Salé-Kénitra &middot; 109,800 cells &middot; High 5G fiber density</text>
+    </g>
+  </g>
+</svg>

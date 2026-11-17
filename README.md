@@ -34,6 +34,12 @@ Across developing economies, institutional datasets reliably capture populations
   <img src="https://raw.githubusercontent.com/yasmenmad/ombres-numeriques/main/assets/lambda-architecture.svg" alt="Digital Shadows Lambda Architecture Diagram" width="100%" />
 </div>
 
+<br/>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/yasmenmad/ombres-numeriques/main/assets/territorial-clustering.svg" alt="Spatial Mining Telemetry and Clustering Radar" width="100%" />
+</div>
+
 The system is architected across four decoupled tiers:
 
 1. **Ingestion & Speed Layer:**
