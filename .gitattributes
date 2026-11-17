@@ -1,1 +1,7 @@
 *.html linguist-detectable=false
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+libs/* linguist-vendored
+data/* linguist-vendored
+assets/* linguist-vendored
+pipeline/*.py linguist-detectable=true

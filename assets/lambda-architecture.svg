@@ -1,0 +1,166 @@
+<svg width="1000" height="520" viewBox="0 0 1000 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1000" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#07090e"/>
+      <stop offset="50%" stop-color="#0c111d"/>
+      <stop offset="100%" stop-color="#06080d"/>
+    </linearGradient>
+    <linearGradient id="streamGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="batchGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <linearGradient id="mlGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <pattern id="archGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="520" rx="16" fill="url(#bgGrad)" stroke="#1f293d" stroke-width="1.5"/>
+  <rect width="1000" height="520" rx="16" fill="url(#archGrid)"/>
+
+  <!-- Header -->
+  <g transform="translate(40, 36)">
+    <circle cx="16" cy="16" r="16" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="6" fill="#10b981"/>
+    <text x="44" y="14" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff" letter-spacing="1">DIGITAL SHADOWS (OMBRES NUMÉRIQUES)</text>
+    <text x="44" y="28" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1.5">LAMBDA ARCHITECTURE &middot; 450,000 SPATIAL CELL MINING &middot; SPARK + KAFKA + GEMINI</text>
+    <rect x="800" y="2" width="120" height="26" rx="6" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1"/>
+    <text x="815" y="19" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#10b981">ZENODO PREPRINT</text>
+  </g>
+
+  <!-- LAYER 1: DATA INGESTION -->
+  <g transform="translate(40, 95)">
+    <rect width="165" height="370" rx="12" fill="#0b0f19" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="14" y="14" width="137" height="24" rx="4" fill="rgba(56,189,248,0.1)"/>
+    <text x="22" y="30" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#38bdf8">1. DATA INGESTION</text>
+
+    <!-- Card 1: 450k grid -->
+    <rect x="14" y="52" width="137" height="88" rx="8" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+    <text x="24" y="74" font-family="sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Morocco 1 km²</text>
+    <text x="24" y="90" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#38bdf8">450,000 Spatial</text>
+    <text x="24" y="104" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#94a3b8">Hex Grid Vectors</text>
+    <text x="24" y="124" font-family="sans-serif" font-size="9" fill="#64748b">Sentinel-2 &middot; OSM</text>
+
+    <!-- Card 2: Provincial GeoJSON -->
+    <rect x="14" y="152" width="137" height="88" rx="8" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+    <text x="24" y="174" font-family="sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Demographics</text>
+    <text x="24" y="190" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#a78bfa">75 Provinces</text>
+    <text x="24" y="204" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#94a3b8">HCP Census 2024</text>
+    <text x="24" y="224" font-family="sans-serif" font-size="9" fill="#64748b">Health, Water, Ed.</text>
+
+    <!-- Card 3: Telemetry Streams -->
+    <rect x="14" y="252" width="137" height="92" rx="8" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+    <text x="24" y="274" font-family="sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">Real-Time Flow</text>
+    <text x="24" y="290" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#10b981">IoT Coverage</text>
+    <text x="24" y="304" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#94a3b8">Network Probes</text>
+    <text x="24" y="324" font-family="sans-serif" font-size="9" fill="#64748b">4G / 5G Tower Ping</text>
+  </g>
+
+  <!-- Connectors from Layer 1 -->
+  <path d="M 205 160 L 250 160" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 2"/>
+  <path d="M 205 270 L 250 270" stroke="#f97316" stroke-width="2" stroke-dasharray="4 2"/>
+  <path d="M 205 370 L 250 370" stroke="#10b981" stroke-width="2" stroke-dasharray="4 2"/>
+
+  <!-- LAYER 2: SPEED LAYER & BATCH LAYER -->
+  <g transform="translate(250, 95)">
+    <rect width="210" height="370" rx="12" fill="#0b0f19" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="14" y="14" width="182" height="24" rx="4" fill="rgba(249,115,22,0.1)"/>
+    <text x="22" y="30" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#f97316">2. LAMBDA PROCESSING</text>
+
+    <!-- Speed Layer Box -->
+    <rect x="14" y="52" width="182" height="135" rx="8" fill="#111827" stroke="rgba(56,189,248,0.2)"/>
+    <text x="24" y="74" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#38bdf8">SPEED LAYER (Streaming)</text>
+    <text x="24" y="94" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">Apache Kafka</text>
+    <text x="24" y="110" font-family="sans-serif" font-size="10" fill="#94a3b8">Multi-Topic Broker &middot; Partitioning</text>
+    <rect x="24" y="122" width="162" height="24" rx="4" fill="rgba(56,189,248,0.08)"/>
+    <text x="32" y="138" font-family="'JetBrains Mono', monospace" font-size="9" fill="#38bdf8">Redis In-Memory State &middot; &lt;5ms</text>
+
+    <!-- Batch Layer Box -->
+    <rect x="14" y="202" width="182" height="152" rx="8" fill="#111827" stroke="rgba(249,115,22,0.2)"/>
+    <text x="24" y="224" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#f97316">BATCH LAYER (Databricks)</text>
+    <text x="24" y="244" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">Apache Spark 3.5</text>
+    <text x="24" y="260" font-family="sans-serif" font-size="10" fill="#94a3b8">PySpark DataFrame &middot; Parquet Lake</text>
+    <rect x="24" y="272" width="162" height="24" rx="4" fill="rgba(249,115,22,0.08)"/>
+    <text x="32" y="288" font-family="'JetBrains Mono', monospace" font-size="9" fill="#f97316">Delta Lake ACID Tables</text>
+    <text x="24" y="318" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">MLflow Experiment Registry</text>
+    <text x="24" y="334" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Batch compute: 450,000 cells</text>
+  </g>
+
+  <!-- Connectors from Layer 2 to Layer 3 -->
+  <path d="M 460 160 L 505 160" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 460 280 L 505 280" stroke="#f97316" stroke-width="2"/>
+
+  <!-- LAYER 3: MACHINE LEARNING & SPATIAL CLUSTERING -->
+  <g transform="translate(505, 95)">
+    <rect width="215" height="370" rx="12" fill="#0b0f19" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="14" y="14" width="187" height="24" rx="4" fill="rgba(16,185,129,0.1)"/>
+    <text x="22" y="30" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#10b981">3. SPATIAL ML CLUSTERING</text>
+
+    <!-- Model Card 1: DBSCAN & K-Means -->
+    <rect x="14" y="52" width="187" height="135" rx="8" fill="#111827" stroke="rgba(16,185,129,0.2)"/>
+    <text x="24" y="74" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#10b981">UNSUPERVISED MINING</text>
+    <text x="24" y="94" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">K-Means &amp; DBSCAN</text>
+    <text x="24" y="110" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Locates isolated "Digital Deserts"</text>
+    <text x="24" y="126" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Spatial density reachability: &epsilon;=2.5km</text>
+    <rect x="24" y="138" width="167" height="36" rx="4" fill="rgba(16,185,129,0.08)"/>
+    <text x="30" y="152" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#10b981">Disparity index Vi = &Sigma; wk(1 - xk)</text>
+    <text x="30" y="166" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#94a3b8">Silhouette score: 0.812</text>
+
+    <!-- Model Card 2: Gemini Policy Engine -->
+    <rect x="14" y="202" width="187" height="152" rx="8" fill="#111827" stroke="rgba(139,92,246,0.2)"/>
+    <text x="24" y="224" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#8b5cf6">POLICY SYNTHESIS</text>
+    <text x="24" y="244" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">Google Gemini AI Engine</text>
+    <text x="24" y="260" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Automated territorial planning</text>
+    <rect x="24" y="272" width="167" height="42" rx="4" fill="rgba(139,92,246,0.08)"/>
+    <text x="30" y="288" font-family="sans-serif" font-size="9" fill="#c4b5fd">&bull; Solar satellite base-stations</text>
+    <text x="30" y="302" font-family="sans-serif" font-size="9" fill="#c4b5fd">&bull; Mobile health clinic routing</text>
+    <text x="24" y="336" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Provincial action matrix output</text>
+  </g>
+
+  <!-- Connectors from Layer 3 to Layer 4 -->
+  <path d="M 720 160 L 765 160" stroke="#10b981" stroke-width="2"/>
+  <path d="M 720 280 L 765 280" stroke="#8b5cf6" stroke-width="2"/>
+
+  <!-- LAYER 4: SERVING & VISUALIZATION CONSOLE -->
+  <g transform="translate(765, 95)">
+    <rect width="195" height="370" rx="12" fill="#0b0f19" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="14" y="14" width="167" height="24" rx="4" fill="rgba(99,102,241,0.1)"/>
+    <text x="22" y="30" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#818cf8">4. SERVING &amp; CONSOLE</text>
+
+    <!-- Serving Endpoint -->
+    <rect x="14" y="52" width="167" height="135" rx="8" fill="#111827" stroke="rgba(99,102,241,0.2)"/>
+    <text x="24" y="74" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#818cf8">CARTOGRAPHIE SIG</text>
+    <text x="24" y="94" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">Interactive Map (Leaflet)</text>
+    <text x="24" y="110" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Vector choropleths</text>
+    <text x="24" y="126" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Dynamic opacity &amp; zoom</text>
+    <rect x="24" y="138" width="147" height="24" rx="4" fill="rgba(99,102,241,0.1)"/>
+    <text x="30" y="154" font-family="'JetBrains Mono', monospace" font-size="9" fill="#a5b4fc">map.html (Live WebGL)</text>
+
+    <!-- Analytics Dashboard -->
+    <rect x="14" y="202" width="167" height="152" rx="8" fill="#111827" stroke="rgba(99,102,241,0.2)"/>
+    <text x="24" y="224" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#818cf8">ANALYTICS CONSOLE</text>
+    <text x="24" y="244" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">Provincial Dashboards</text>
+    <text x="24" y="260" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Chart.js multi-axial metrics</text>
+    <text x="24" y="276" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Vulnerability rank table</text>
+    <rect x="24" y="292" width="147" height="24" rx="4" fill="rgba(16,185,129,0.1)"/>
+    <text x="30" y="308" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">dashboard.html (Live)</text>
+    <text x="24" y="336" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#64748b">REST API: /api/regions</text>
+  </g>
+
+  <!-- Footer Banner -->
+  <g transform="translate(40, 480)">
+    <text x="0" y="18" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">AUTHOR: YASMINE DAOUDI &middot; RESEARCH &amp; BIG DATA ENGINEERING &middot; DOI: 10.5281/zenodo.23963589</text>
+    <text x="760" y="18" font-family="'JetBrains Mono', monospace" font-size="10" fill="#10b981">&check; 450,000 SPATIAL CELLS INDEXED</text>
+  </g>
+</svg>
