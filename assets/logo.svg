@@ -1,6 +1,19 @@
-<svg viewBox="0 0 500 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <text x="10" y="55" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="700" font-size="48" fill="#0B132B" letter-spacing="4">PHA<tspan fill="#D90429">N</tspan>TOM</text>
-  <line x1="10" y1="75" x2="160" y2="75" stroke="#D90429" stroke-width="3.5" stroke-linecap="round"/>
-  <line x1="160" y1="75" x2="350" y2="75" stroke="#FFB703" stroke-width="3.5" stroke-linecap="round"/>
-  <text x="10" y="106" font-family="'Inter', -apple-system, sans-serif" font-weight="600" font-size="22" fill="#0B132B" letter-spacing="12">SEEKERS</text>
+<svg viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dsGrad" x1="0" y1="0" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Typography: DIGITAL SHADOWS -->
+  <text x="10" y="55" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="44" fill="url(#dsGrad)" letter-spacing="3">DIGITAL</text>
+  <text x="210" y="55" font-family="'Space Grotesk', -apple-system, sans-serif" font-weight="800" font-size="44" fill="#D90429" letter-spacing="3">SHADOWS</text>
+
+  <!-- Dual Accent Geometric Rule -->
+  <line x1="10" y1="74" x2="200" y2="74" stroke="#D90429" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="200" y1="74" x2="480" y2="74" stroke="#FFB703" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Subtitle -->
+  <text x="12" y="104" font-family="'Inter', -apple-system, sans-serif" font-weight="600" font-size="18" fill="#475569" letter-spacing="10">INTELLIGENCE TERRITORIALE &amp; SIG</text>
 </svg>

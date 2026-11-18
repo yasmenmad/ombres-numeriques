@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/phantom-logo.png" alt="Phantom Seekers - Digital Shadows" width="520" style="border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.15);" />
+  <img src="./assets/phantom-logo.png" alt="Digital Shadows - Spatial Intelligence Platform" width="720" style="border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.15);" />
   
   <br/><br/>
   
