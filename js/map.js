@@ -8,11 +8,10 @@ mapObj = L.map('map', {
   attributionControl: false
 });
 
-// CartoDB Dark Matter tile layer (Ultra-reliable high availability, zero 403 blocks)
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  subdomains: 'abcd',
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// Esri World Dark Gray Canvas (100% Free, No API Key Required, Never Blocked)
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 16,
+  attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
 }).addTo(mapObj);
 
 // Load data
