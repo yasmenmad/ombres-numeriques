@@ -1,5 +1,9 @@
 <div align="center">
-  <img src="./assets/brand-logo.svg" alt="Digital Shadows Logo" width="380" />
+  <img src="./assets/phantom-logo.png" alt="Phantom Seekers - Digital Shadows" width="520" style="border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.15);" />
+  
+  <br/><br/>
+  
+  <img src="./assets/logo.svg" alt="Digital Shadows Logo" width="360" />
 
   <p><strong>Silence as Data: A Lambda-Architecture Pipeline for Locating Digitally Invisible Communities on a 1 km² Grid of Morocco</strong></p>
 
