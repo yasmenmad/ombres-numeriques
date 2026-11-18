@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yasmenmad/ombres-numeriques/main/assets/brand-logo.svg" alt="Digital Shadows Logo" width="380" />
+  <img src="./assets/brand-logo.svg" alt="Digital Shadows Logo" width="380" />
 
   <p><strong>Silence as Data: A Lambda-Architecture Pipeline for Locating Digitally Invisible Communities on a 1 km² Grid of Morocco</strong></p>
 
@@ -31,13 +31,13 @@ Across developing economies, institutional datasets reliably capture populations
 ## Distributed Lambda Architecture
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yasmenmad/ombres-numeriques/main/assets/lambda-architecture.svg" alt="Digital Shadows Lambda Architecture Diagram" width="100%" />
+  <img src="./assets/lambda-architecture.svg" alt="Digital Shadows Lambda Architecture Diagram" width="100%" />
 </div>
 
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yasmenmad/ombres-numeriques/main/assets/territorial-clustering.svg" alt="Spatial Mining Telemetry and Clustering Radar" width="100%" />
+  <img src="./assets/territorial-clustering.svg" alt="Spatial Mining Telemetry and Clustering Radar" width="100%" />
 </div>
 
 The system is architected across four decoupled tiers:
