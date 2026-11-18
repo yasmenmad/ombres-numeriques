@@ -160,7 +160,7 @@ body {
 
 .kpi-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -180,7 +180,7 @@ body {
 }
 .kpi-val {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
@@ -221,13 +221,13 @@ body {
 
 .grid2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 20px;
   margin-bottom: 24px;
 }
 .grid3 {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 20px;
   margin-bottom: 24px;
 }
@@ -291,7 +291,7 @@ body {
 
 .rc-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
 }
 .rc {
@@ -377,4 +377,14 @@ body {
   .kpi-row, .rc-grid { grid-template-columns: 1fr; }
   .wrap { padding: 16px; }
   #top { padding: 0 16px; }
+}
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  min-width: 0;
+}
+.card {
+  min-width: 0;
+  overflow: hidden;
 }

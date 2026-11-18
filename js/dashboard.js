@@ -29,7 +29,7 @@ new Chart(document.getElementById('hdiChart'), {
       borderWidth:2, pointRadius:0, fill:true, tension:.4
     }]
   },
-  options:{responsive:true,plugins:{legend:{display:false}},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{x:{grid:{color:'#1a2428'},ticks:{maxTicksLimit:8,font:{size:8}}},
             y:{grid:{color:'#1a2428'},ticks:{font:{size:8}},min:.4,max:.75}}}
 });
@@ -44,7 +44,7 @@ new Chart(document.getElementById('popChart'), {
     {label:'Rurale',data:rural,borderColor:C.orange,backgroundColor:'rgba(192,120,32,.1)',borderWidth:2,pointRadius:0,fill:true,tension:.4},
     {label:'Urbaine',data:urban,borderColor:C.blue,backgroundColor:'rgba(42,90,176,.1)',borderWidth:2,pointRadius:0,fill:true,tension:.4}
   ]},
-  options:{responsive:true,plugins:{legend:{labels:{font:{size:9},color:'#5a7078',boxWidth:10}}},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:9},color:'#5a7078',boxWidth:10}}},
     scales:{x:{grid:{color:'#1a2428'},ticks:{maxTicksLimit:8,font:{size:8}}},
             y:{grid:{color:'#1a2428'},ticks:{font:{size:8}}}}}
 });
@@ -62,7 +62,7 @@ new Chart(document.getElementById('barChart'), {
       borderWidth:1, borderRadius:2
     }]
   },
-  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{x:{grid:{color:'#1a2428'},ticks:{font:{size:8}},max:100},
             y:{grid:{display:false},ticks:{font:{size:8}}}}}
 });
@@ -82,7 +82,7 @@ new Chart(document.getElementById('radarChart'), {
       borderWidth:1.5, pointRadius:2
     }))
   },
-  options:{responsive:true,
+  options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{labels:{font:{size:8},color:'#5a7078',boxWidth:8}}},
     scales:{r:{grid:{color:'#1a2428'},angleLines:{color:'#1a2428'},
       pointLabels:{font:{size:8},color:'#5a7078'},
@@ -98,7 +98,7 @@ new Chart(document.getElementById('donutChart'), {
     labels: services.map(s=>SI[s]+' '+SL[s]),
     datasets:[{data:avgs, backgroundColor:services.map(s=>SC[s]), borderColor:'#07090a', borderWidth:2}]
   },
-  options:{responsive:true,cutout:'65%',
+  options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
     plugins:{legend:{labels:{font:{size:8},color:'#5a7078',boxWidth:8,padding:6}}}}
 });
 
@@ -115,7 +115,7 @@ new Chart(document.getElementById('serviceChart'), {
       borderWidth:1, borderRadius:3
     }]
   },
-  options:{responsive:true,plugins:{legend:{display:false}},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
     scales:{x:{grid:{display:false},ticks:{font:{size:9}}},
             y:{grid:{color:'#1a2428'},ticks:{font:{size:8}},max:100}}}
 });

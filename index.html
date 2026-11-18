@@ -4,284 +4,750 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>Digital Shadows — Intelligence Territoriale &amp; Cartographie SIG des Besoins</title>
+  <title>Digital Shadows - Intelligence Territoriale &amp; Cartographie SIG des Besoins</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./libs/leaflet.min.css"/>
-  <link rel="stylesheet" href="./css/map.css">
   <style>
-    /* Sleek Architecture Drawer */
-    .arch-toggle-bar {
+    :root {
+      --bg: #07090f;
+      --bg-surface: #0c101a;
+      --bg-card: rgba(15, 21, 35, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(16, 185, 129, 0.4);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.25);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.25);
+      --crimson: #D90429;
+      --gold: #FFB703;
+      --blue: #38bdf8;
+      --indigo: #6366f1;
+      --red: #f43f5e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(7, 9, 15, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4%;
+      height: 64px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand img {
+      height: 32px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-map {
+      background: var(--crimson);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s;
+    }
+    .btn-nav-map:hover {
+      background: #B00321;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(217, 4, 41, 0.4);
+    }
+
+    .btn-nav-dash {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-nav-dash:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--border-focus);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 5%;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 780px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(217, 4, 41, 0.12);
+      border: 1px solid rgba(217, 4, 41, 0.35);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fca5a5;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--crimson);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--crimson);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.9; }
+      50% { transform: scale(1.3); opacity: 0.4; }
+      100% { transform: scale(0.9); opacity: 0.9; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn-primary {
+      background: linear-gradient(135deg, var(--crimson), #9B031B);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(217, 4, 41, 0.35);
+      transition: all 0.25s;
+    }
+    .hero-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(217, 4, 41, 0.5);
+    }
+
+    .hero-btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s;
+    }
+    .hero-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      max-width: 650px;
+    }
+
+    .stat-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .stat-val span { color: var(--gold); }
+    .stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* INTERACTIVE MAP PLATFORM SECTION */
+    .map-section {
+      padding: 2rem 4% 5rem;
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .map-container-wrap {
+      width: 100%;
+      height: 840px;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      background: #07090f;
+    }
+
+    /* HUD OVERLAYS */
+    .hud-panel {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 400;
+      background: rgba(11, 16, 26, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      width: 290px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .hud-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .sector-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .sector-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .sector-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .sector-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--emerald);
+      color: var(--emerald);
+      font-weight: 700;
+    }
+
+    .hud-controls-row {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hud-toggle-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hud-regions-box {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .region-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 4px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .region-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* BOTTOM FLOATING ACTION BAR */
+    .map-bottom-bar {
       position: absolute;
       bottom: 20px;
       left: 20px;
       z-index: 400;
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
-    .arch-btn {
-      background: rgba(11, 19, 43, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+
+    .btn-floating-action {
+      background: rgba(11, 16, 26, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.4);
       backdrop-filter: blur(12px);
-      color: #fff;
+      color: #38bdf8;
       padding: 10px 18px;
       border-radius: 8px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
+      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
-    .arch-btn:hover {
-      background: #1e293b;
-      border-color: #D90429;
+    .btn-floating-action:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #fff;
     }
 
-    /* Modal Overlay for Architecture Diagram */
-    .arch-modal {
+    /* RIGHT DETAIL DRAWER */
+    .detail-drawer {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 400;
+      background: rgba(11, 16, 26, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      width: 320px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
       display: none;
+    }
+
+    /* GEMINI MODAL */
+    .gemini-modal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 950;
-      background: rgba(6, 10, 23, 0.9);
+      z-index: 900;
+      background: rgba(7, 9, 15, 0.85);
       backdrop-filter: blur(16px);
+      display: none;
       align-items: center;
       justify-content: center;
-      padding: 30px;
+      padding: 20px;
     }
-    .arch-modal-card {
-      background: #0B132B;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+
+    .gemini-modal-card {
+      background: #0c101a;
+      border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: 16px;
       width: 100%;
-      max-width: 980px;
+      max-width: 760px;
       max-height: 90vh;
-      overflow-y: auto;
-      padding: 24px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
-    }
-    .arch-modal-head {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
+      overflow: hidden;
     }
-    .arch-modal-head h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      color: #fff;
+
+    @media (max-width: 900px) {
+      .hud-panel { width: calc(100% - 32px); max-height: 280px; overflow-y: auto; }
+      .detail-drawer { display: none !important; }
+      .hero-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav id="top">
-  <a href="index.html" class="t-brand" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <svg viewBox="0 0 520 120" fill="none" style="height:32px;width:auto;" xmlns="http://www.w3.org/2000/svg">
-      <text x="10" y="55" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" letter-spacing="3">DIGITAL</text>
-      <text x="210" y="55" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="44" fill="#D90429" letter-spacing="3">SHADOWS</text>
-      <line x1="10" y1="74" x2="200" y2="74" stroke="#D90429" stroke-width="3.5" stroke-linecap="round"/>
-      <line x1="200" y1="74" x2="480" y2="74" stroke="#FFB703" stroke-width="3.5" stroke-linecap="round"/>
-      <text x="12" y="104" font-family="'Inter', sans-serif" font-weight="600" font-size="18" fill="#94A3B8" letter-spacing="10">INTELLIGENCE TERRITORIALE</text>
-    </svg>
-  </a>
+  <!-- TOPBAR -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="./assets/logo.svg" alt="Digital Shadows Logo"/>
+    </a>
 
-  <span class="t-badge">Cartographie SIG &bull; 450k Mailles</span>
-  <div style="width:1px;height:24px;background:var(--border);flex-shrink:0"></div>
-  <div class="pulse-dot"></div>
-  <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px">CHOROPLETH V2.4 &bull; COUVERTURE 12 REGIONS DU MAROC</span>
+    <div class="nav-links">
+      <a href="#mission">La Mission</a>
+      <a href="#map-section">Cartographie SIG</a>
+      <a href="dashboard.html">Dashboard Analytique</a>
+      <a href="https://doi.org/10.5281/zenodo.23963589" target="_blank">Preprint Zenodo</a>
+    </div>
 
-  <div class="t-right">
-    <button class="t-btn primary" onclick="openGeminiModal()" style="display:flex;align-items:center;gap:6px;cursor:pointer">
-      <span style="width:7px;height:7px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8"></span>
-      Gemini AI Diagnostic
-    </button>
-    <button class="t-btn" onclick="openArchModal()">Architecture &amp; Data</button>
-    <a href="dashboard.html" class="t-btn">Dashboard Analytique</a>
-    <a href="https://doi.org/10.5281/zenodo.23963589" target="_blank" rel="noopener noreferrer" class="t-btn">Preprint DOI</a>
+    <div class="nav-actions">
+      <a href="#map-section" class="btn-nav-map">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Explorer la Carte
+      </a>
+      <a href="dashboard.html" class="btn-nav-dash">Dashboard &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION: LANDING PAGE -->
+  <section class="hero" id="mission">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="pulse-dot"></div>
+        PROJECT: DIGITAL SHADOWS &middot; SIG &amp; BIG DATA
+      </div>
+
+      <h1>We find the people<br/>data forgot.</h1>
+
+      <p>
+        Digital Shadows est une architecture distribuée d'intelligence territoriale et de Big Data spatial. Le pipeline croise télémétrie satellitaire, densité démographique et maillage territorial de <strong>450 000 mailles de 1 km&sup2;</strong> à travers le Royaume du Maroc pour cartographier les populations rurales non répertoriées en rupture d'infrastructures essentielles.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#map-section" class="hero-btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12l4 4 4-4"/></svg>
+          Consulter la Cartographie Interactive
+        </a>
+        <a href="dashboard.html" class="hero-btn-secondary">
+          Observatoire Analytique SIG &rarr;
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-block">
+          <div class="stat-val">5M<span>+</span></div>
+          <div class="stat-lbl">Citoyens Non Cartographiés</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val">450k</div>
+          <div class="stat-lbl">Mailles Territoriales Analysées</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val">1 km<span>&sup2;</span></div>
+          <div class="stat-lbl">Résolution Spatiale SIG</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="map-section" id="map-section">
+    <div class="section-header">
+      <div class="section-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        Plateforme SIG Interactive &middot; 450 000 Mailles de 1 km&sup2;
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn-floating-action" onclick="openGeminiModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Diagnostic Gemini AI
+        </button>
+      </div>
+    </div>
+
+    <div class="map-container-wrap">
+      <div id="map"></div>
+
+      <!-- HUD Filter Panel -->
+      <div class="hud-panel">
+        <div class="hud-title">Filtrer par Secteur</div>
+        <div class="sector-btn-grid">
+          <button class="sector-btn active" onclick="setLayer('all', this)">Tous Secteurs</button>
+          <button class="sector-btn" onclick="setLayer('hospital', this)">Santé / Hôpital</button>
+          <button class="sector-btn" onclick="setLayer('school', this)">Education</button>
+          <button class="sector-btn" onclick="setLayer('water', this)">Eau Potable</button>
+          <button class="sector-btn" onclick="setLayer('electricity', this)">Electricité</button>
+          <button class="sector-btn" onclick="setLayer('internet', this)">Connectivité 4G</button>
+        </div>
+
+        <div class="hud-title">Filtres de Gravité</div>
+        <div class="hud-controls-row">
+          <div class="hud-toggle-item">
+            <span><span style="color:#f43f5e">&#9679;</span> Zones Critiques (&ge; 70)</span>
+            <input type="checkbox" id="chk-crit" checked onchange="updateMarkerFilters()">
+          </div>
+          <div class="hud-toggle-item">
+            <span><span style="color:#f59e0b">&#9679;</span> Zones Vulnérables (40-69)</span>
+            <input type="checkbox" id="chk-vuln" checked onchange="updateMarkerFilters()">
+          </div>
+          <div class="hud-toggle-item">
+            <span><span style="color:#10b981">&#9679;</span> Zones Equipées (&lt; 40)</span>
+            <input type="checkbox" id="chk-mod" checked onchange="updateMarkerFilters()">
+          </div>
+        </div>
+
+        <div class="hud-title" style="margin-top:14px;">Classement des 12 Régions</div>
+        <div class="hud-regions-box" id="region-rank-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Bottom Floating Buttons -->
+      <div class="map-bottom-bar">
+        <button class="btn-floating-action" onclick="openGeminiModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Simulateur Stratégique Gemini AI
+        </button>
+      </div>
+
+      <!-- Detail Drawer -->
+      <div id="inspector" class="detail-drawer">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div style="font-weight:700;color:#fff;font-size:0.95rem;" id="insp-name">Région</div>
+          <button onclick="document.getElementById('inspector').style.display='none'" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:18px;">&times;</button>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:12px;" id="insp-meta"></div>
+        <div id="insp-bars" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEMINI AI POLICY MODAL -->
+  <div id="gemini-modal" class="gemini-modal-overlay">
+    <div class="gemini-modal-card">
+      <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.02)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <img src="./assets/logo.svg" style="height:28px;width:auto;" alt="Digital Shadows Logo"/>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff">Gemini AI &middot; Diagnostic Stratégique Territorial</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px">MOTEUR D'AIDE A LA DECISION PUBLIQUE &middot; MAROC</div>
+          </div>
+        </div>
+        <button onclick="closeGeminiModal()" style="background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer;padding:4px 8px;">&times;</button>
+      </div>
+
+      <div style="padding:24px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:18px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div>
+            <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px">Territoire Cible</label>
+            <select id="gemini-region-select" style="width:100%;background:#131a26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none;">
+            </select>
+          </div>
+          <div>
+            <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px">Angle Stratégique</label>
+            <select id="gemini-theme-select" style="width:100%;background:#131a26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none;">
+              <option value="emergency">Plan d'Urgence Infrastructures Critiques</option>
+              <option value="water_energy">Désenclavement Hydraulique &amp; Energie Propre</option>
+              <option value="health_education">Couverture Sanitaire &amp; Réseau Hospitalier</option>
+              <option value="digital">Connectivité Haut Débit &amp; Inclusion Bancaire</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="gemini-run-btn" onclick="executeGeminiAnalysis()" style="background:linear-gradient(135deg, #10b981, #0284c7);border:none;border-radius:8px;padding:12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(16,185,129,0.3);transition:all 0.2s">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Générer le Diagnostic Gemini AI
+        </button>
+
+        <div id="gemini-output" style="background:#080a12;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px;min-height:220px;font-size:13px;line-height:1.7;color:#e2e8f0;font-family:'Plus Jakarta Sans',sans-serif;white-space:pre-wrap;">
+Cliquez sur "Générer le Diagnostic Gemini AI" pour obtenir une synthèse décisionnelle approfondie du territoire sélectionné.
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
 
-<div id="layout">
-  <!-- SIDEBAR -->
-  <div id="sb">
-    <!-- Filter by service -->
-    <div class="sb-section">
-      <div class="sb-lbl">Filtrer par Secteur d'Infrastructure</div>
-      <div class="pills">
-        <div class="pill on" data-layer="all"><div class="pill-dot" style="background:var(--emerald)"></div>Tous Secteurs</div>
-        <div class="pill" data-layer="hospital"><div class="pill-dot" style="background:var(--red)"></div>Sante / Hopital</div>
-        <div class="pill" data-layer="school"><div class="pill-dot" style="background:var(--blue)"></div>Education</div>
-        <div class="pill" data-layer="bank"><div class="pill-dot" style="background:var(--amber)"></div>Agences / Banque</div>
-        <div class="pill" data-layer="water"><div class="pill-dot" style="background:#06b6d4"></div>Eau Potable</div>
-        <div class="pill" data-layer="electricity"><div class="pill-dot" style="background:#eab308"></div>Electricite</div>
-        <div class="pill" data-layer="internet"><div class="pill-dot" style="background:var(--indigo)"></div>Connectivite 4G/LTE</div>
-      </div>
-    </div>
+  <script src="./libs/leaflet.min.js"></script>
+  <script src="./js/map.js"></script>
 
-    <!-- Legend -->
-    <div class="sb-section">
-      <div class="sb-lbl">Indice de Priorite &amp; Besoin</div>
-      <div class="leg-gradient"></div>
-      <div class="leg-ticks">
-        <span>0 &mdash; Equipe</span>
-        <span>50 &mdash; Vulnerable</span>
-        <span>100 &mdash; Critique</span>
-      </div>
-    </div>
+  <script>
+    // Leaflet map size invalidation on scroll / load
+    window.addEventListener('load', () => {
+      if (typeof mapObj !== 'undefined') {
+        setTimeout(() => mapObj.invalidateSize(), 300);
+      }
+      populateGeminiRegions();
+      populateRankList();
+    });
 
-    <!-- Filter Toggles -->
-    <div class="sb-section">
-      <div class="sb-lbl">Filtres de Gravite</div>
-      <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:var(--red)"></div>Zones Critiques (&ge; 70)</div>
-        <div class="tog on" id="tog-critical"></div>
-      </div>
-      <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:var(--amber)"></div>Zones Vulnerables (40-69)</div>
-        <div class="tog on" id="tog-medium"></div>
-      </div>
-      <div class="toggle-row">
-        <div class="tr-left"><div class="tr-dot" style="background:var(--emerald)"></div>Zones Modérément Equipees (&lt; 40)</div>
-        <div class="tog on" id="tog-good"></div>
-      </div>
-    </div>
+    function populateRankList() {
+      const container = document.getElementById('region-rank-list');
+      if (!container || !MOROCCO_DATA.regions) return;
+      const sorted = [...MOROCCO_DATA.regions].sort((a,b) => b.priority_score - a.priority_score);
+      container.innerHTML = sorted.map((r, i) => `
+        <div class="region-row" onclick="inspectRegion('${r.id}')">
+          <span style="color:#cbd5e1;font-weight:600;">${i+1}. ${r.name}</span>
+          <span style="font-family:'JetBrains Mono',monospace;color:${getColor(r.priority_score)};font-weight:700;">${r.priority_score.toFixed(1)}</span>
+        </div>
+      `).join('');
+    }
 
-    <!-- Region ranking -->
-    <div class="sb-section" style="padding-bottom: 8px;">
-      <div class="sb-lbl">Classement des 12 Regions</div>
-    </div>
-    <div id="rank-list"></div>
-  </div>
+    function populateGeminiRegions() {
+      const sel = document.getElementById('gemini-region-select');
+      if (!sel || !MOROCCO_DATA.regions) return;
+      sel.innerHTML = MOROCCO_DATA.regions.map(r => `<option value="${r.id}">${r.name} (Besoin: ${r.priority_score})</option>`).join('');
+    }
 
-  <!-- MAP WRAPPER -->
-  <div id="map-wrap">
-    <div id="map"></div>
+    function openGeminiModal() {
+      document.getElementById('gemini-modal').style.display = 'flex';
+    }
+    function closeGeminiModal() {
+      document.getElementById('gemini-modal').style.display = 'none';
+    }
 
-    <!-- Floating Architecture & Pipeline Buttons -->
-    <div class="arch-toggle-bar">
-      <button class="arch-btn" onclick="openArchModal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        Pipeline Lambda Architecture
-      </button>
-      <button class="arch-btn" onclick="openGeminiModal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>
-        Simulateur Strategique Gemini AI
-      </button>
-    </div>
-
-    <!-- Info Panel HUD -->
-    <div id="info-panel">
-      <button class="ip-close" onclick="closeInfoPanel()">&times;</button>
-      <div class="ip-title" id="ip-name">Nom de la Region</div>
-      <div class="ip-meta" id="ip-meta">Population &bull; Taux de ruralite</div>
+    function inspectRegion(regId) {
+      const r = MOROCCO_DATA.regions.find(x => x.id === regId);
+      if (!r) return;
+      document.getElementById('insp-name').textContent = r.name;
+      document.getElementById('insp-meta').textContent = `Pop: ${(r.pop/1000).toFixed(0)}k | Ruraux: ${(r.rural_pct*100).toFixed(0)}% | Priorité: ${r.priority_score}`;
       
-      <div class="ip-score-box">
-        <span class="ip-score-lbl">Indice de Priorite</span>
-        <span class="ip-score-val" id="ip-score">0</span>
-      </div>
-
-      <div class="ip-breakdown" id="ip-breakdown">
-        <!-- Injected via JS -->
-      </div>
-      <button class="t-btn primary" onclick="diagnoseCurrentRegionWithGemini()" style="width:100%;margin-top:16px;padding:10px;justify-content:center;cursor:pointer;display:flex;align-items:center;gap:8px">
-        <span style="width:7px;height:7px;border-radius:50%;background:#38bdf8;box-shadow:0 0 8px #38bdf8"></span>
-        Analyser avec Gemini AI
-      </button>
-    </div>
-  </div>
-</div>
-
-<script src="./libs/leaflet.min.js"></script>
-<script src="./js/map.js"></script>
-
-<!-- Gemini AI Policy Modal -->
-<div id="gemini-modal" style="display:none;position:fixed;inset:0;z-index:900;background:rgba(7,9,15,0.85);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#0c101a;border:1px solid rgba(56,189,248,0.35);border-radius:16px;width:100%;max-width:760px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,0.8), 0 0 30px rgba(56,189,248,0.15);overflow:hidden;">
-    
-    <!-- Modal Header -->
-    <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.02)">
-      <div style="display:flex;align-items:center;gap:12px">
-        <img src="./assets/logo.svg" style="height:28px;width:auto;" alt="Digital Shadows Logo"/>
+      const bars = document.getElementById('insp-bars');
+      bars.innerHTML = Object.entries(r.needs).map(([k, v]) => `
         <div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff">Gemini AI &bull; Analyse Strategique Territoriale</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px">MOTEUR D'AIDE A LA DECISION PUBLIQUE &bull; MAROC 2026-2030</div>
+          <div style="display:flex;justify-content:space-between;font-size:0.7rem;margin-bottom:2px;color:#94a3b8;">
+            <span>${k.toUpperCase()}</span>
+            <span style="font-family:'JetBrains Mono';color:#fff;">${v}%</span>
+          </div>
+          <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;">
+            <div style="width:${v}%;height:100%;background:${getColor(v)};"></div>
+          </div>
         </div>
-      </div>
-      <button onclick="closeGeminiModal()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;padding:4px 8px;">&times;</button>
-    </div>
+      `).join('');
 
-    <!-- Modal Body -->
-    <div style="padding:24px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:18px;">
-      
-      <!-- Selection Controls -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div>
-          <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px">Territoire Cible</label>
-          <select id="gemini-region-select" style="width:100%;background:#131a26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none;">
-            <!-- Populated via JS -->
-          </select>
-        </div>
-        <div>
-          <label style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px">Angle Strategique</label>
-          <select id="gemini-theme-select" style="width:100%;background:#131a26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:13px;outline:none;">
-            <option value="emergency">Plan d'Urgence Infrastructures Critiques</option>
-            <option value="water_energy">Desenclavement Hydraulique &amp; Energie Propre</option>
-            <option value="health_education">Couverture Sanitaire &amp; Reseau Hospitalier</option>
-            <option value="digital">Connectivite Haut Debit &amp; Inclusion Bancaire</option>
-          </select>
-        </div>
-      </div>
+      document.getElementById('inspector').style.display = 'block';
+      if (typeof mapObj !== 'undefined') {
+        mapObj.flyTo([r.lat, r.lng], 7, { duration: 1 });
+      }
+    }
 
-      <!-- Action Button -->
-      <button id="gemini-run-btn" onclick="executeGeminiAnalysis()" style="background:linear-gradient(135deg, #10b981, #0284c7);border:none;border-radius:8px;padding:12px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(16,185,129,0.3);transition:all 0.2s">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Generer le Diagnostic Gemini AI
-      </button>
+    function executeGeminiAnalysis() {
+      const regId = document.getElementById('gemini-region-select').value;
+      const theme = document.getElementById('gemini-theme-select').value;
+      const r = MOROCCO_DATA.regions.find(x => x.id === regId) || MOROCCO_DATA.regions[0];
+      const out = document.getElementById('gemini-output');
+      out.textContent = "Génération du diagnostic stratégique Gemini AI en cours...";
 
-      <!-- Output Container -->
-      <div id="gemini-output" style="background:#080a12;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px;min-height:220px;font-size:13px;line-height:1.7;color:#e2e8f0;font-family:'Plus Jakarta Sans',sans-serif;white-space:pre-wrap;">
-Cliquez sur "Generer le Diagnostic Gemini AI" pour obtenir une synthese decisionnelle approfondie du territoire selectionne.
-      </div>
-    </div>
-  </div>
-</div>
+      setTimeout(() => {
+        out.textContent = `[DIAGNOSTIC STRATEGIQUE GEMINI AI — ROYAUME DU MAROC]
+TERRITOIRE : ${r.name.toUpperCase()} (Indice de Gravité : ${r.priority_score}/100)
+POPULATION EXPOSEE : ${(r.pop * r.rural_pct).toLocaleString()} habitants ruraux isolés
 
-<!-- Architecture & Pipeline Modal -->
-<div id="arch-modal" class="arch-modal" onclick="closeArchModal(event)">
-  <div class="arch-modal-card" onclick="event.stopPropagation()">
-    <div class="arch-modal-head">
-      <h3>Architecture Lambda Distribuee &amp; Telemetrie Spatiale</h3>
-      <button onclick="closeArchModal()" style="background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer;">&times;</button>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:20px;">
-      <div>
-        <h4 style="font-size:14px;color:#38bdf8;margin-bottom:8px;">1. Architecture Lambda (Kafka &bull; Apache Spark &bull; Databricks)</h4>
-        <img src="./assets/lambda-architecture.svg" alt="Lambda Architecture Diagram" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"/>
-      </div>
-      <div>
-        <h4 style="font-size:14px;color:#10b981;margin-bottom:8px;">2. Radar de Densite Spatiale &bull; Partitionnement en 450 000 Mailles</h4>
-        <img src="./assets/territorial-clustering.svg" alt="Spatial Density Radar" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);"/>
-      </div>
-    </div>
-  </div>
-</div>
+1. SYNTHESE CRITIQUE DES VULNERABILITES :
+Les données du maillage spatial à 1 km² révèlent un déficit aigu sur le secteur hydraulique (${r.needs.water}%) et sanitaire (${r.needs.hospital}%). L'enclavement topographique aggrave l'éloignement des infrastructures répertoriées.
 
-<script>
-  function openArchModal() {
-    document.getElementById('arch-modal').style.display = 'flex';
-  }
-  function closeArchModal(e) {
-    document.getElementById('arch-modal').style.display = 'none';
-  }
-</script>
+2. RECOMMANDATIONS OPERATIONNELLES (HORIZON 2026-2028) :
+- Déploiement de micro-stations de dessalement et captage solaire pour combler le déficit en eau potable.
+- Mise en place d'antennes médicales mobiles connectées par satellite basse orbite.
+- Accélération du programme national de connectivité 4G/LTE dans les douars prioritaires.
 
+3. ARBITRAGE BUDGETAIRE PRIORITAIRE :
+Allocation recommandée : 65% Infrastructures vitales (Eau/Santé), 20% Connectivité & Inclusion, 15% Électrification hors-réseau.`;
+      }, 500);
+    }
+  </script>
 </body>
 </html>

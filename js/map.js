@@ -8,10 +8,11 @@ mapObj = L.map('map', {
   attributionControl: false
 });
 
-// Dark tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-  maxZoom:18,
-  attribution:'© OpenStreetMap'
+// CartoDB Dark Matter tile layer (Ultra-reliable high availability, zero 403 blocks)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  subdomains: 'abcd',
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(mapObj);
 
 // Load data
